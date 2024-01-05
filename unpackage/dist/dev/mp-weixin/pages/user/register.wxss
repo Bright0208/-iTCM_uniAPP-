@@ -1,0 +1,61 @@
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+.avatar-container {
+  border: none;
+  outline: none;
+  background-color: transparent;	  
+  margin-bottom: 30px;
+  border-radius: 50%;
+}
+.avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+.info-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  width: 100%;
+}
+.info-label {
+  width: 60px;
+  color: #333;
+}
+.info-value, .info-picker {
+  flex: 1;
+  /* border: 1px solid #ddd; */
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #fff;
+}
+.picker-display {
+  padding-left: 5px; /* 与输入框文字对齐 */
+}
+.error-msg {
+  color: red;
+  padding-left: 10px;
+}
+.submit-btn {
+  width: 100%;
+  padding: 10px 0;
+  font-size: 16px;
+  background-color: #000;
+  color: #fff;
+  border-radius: 5px;
+  border: none;
+  margin-top: 20px; /* 与其他元素分开 */
+}
+.info-notice {
+  font-size: 12px; /* 设置小字号大小 */
+  color: #999; /* 设置字体颜色 */
+  text-align: center; /* 文字居中 */
+  padding: 10px 0; /* 上下间距，左右不设置 */
+  margin-top: 20px; /* 如有需要，可设置间距 */
+}
+

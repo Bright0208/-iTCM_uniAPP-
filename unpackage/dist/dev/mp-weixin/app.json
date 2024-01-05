@@ -1,0 +1,18 @@
+{
+  "pages": [
+    "pages/test/test",
+    "pages/index/index",
+    "pages/user/PersonalInfo",
+    "pages/user/register",
+    "pages/home/home",
+    "pages/user/login"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "uni-app",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8"
+  },
+  "usingComponents": {}
+}

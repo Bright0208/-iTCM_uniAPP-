@@ -1,0 +1,28 @@
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 50rpx;
+}
+.userinfo {
+  margin-bottom: 50rpx;
+}
+.avatar {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  margin-bottom: 20rpx;
+}
+.nickname {
+  font-size: 28rpx; 
+  color: #333;
+}
+button {
+  border: none;
+  padding: 10rpx 20rpx;
+  background-color: #1aad19;
+  color: white;
+  border-radius: 5rpx;
+}
+
