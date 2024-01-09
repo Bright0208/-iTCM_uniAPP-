@@ -192,7 +192,9 @@ var _default = {
               success: function success(response) {
                 var notRegister = response.data.notRegister;
                 var token = response.data.token;
-                uni.setStorageSync('token', token);
+                var identity = response.data.identity;
+                console.log(identity);
+                uni.setStorageSync('token', token); //保存token
                 if (notRegister) {
                   // 如果notRegister等于1，显示提示信息，并在3秒后跳转到注册页面
                   uni.showToast({
@@ -210,17 +212,15 @@ var _default = {
                       }, 2000); // 2秒后执行页面跳转，确保提示信息已经展示完毕
                     }
                   });
-                } else {
-                  uni.redirectTo({
-                    url: '/pages/home/home'
+                } else if (identity == 2) {
+                  uni.switchTab({
+                    url: '/pages/home/wangzhen'
                   });
-                  console.log(token);
                   // 用户已注册，执行其他逻辑
+                } else {
+                  console.log(token);
                 }
-                // uni.setStorageSync('token', token);
-                // 其他逻辑处理
               },
-
               fail: function fail(err) {
                 console.log('登录失败：' + err.errMsg);
               }

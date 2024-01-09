@@ -1,4 +1,8 @@
 {
+	"easycom": {
+		"^u-(.*)":"@/uni_modules/uview-ui/components/u-$1/u-$1.vue/" 
+	},
+	
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
 			"path" : "pages/test/test",
@@ -18,7 +22,7 @@
 			"path" : "pages/user/PersonalInfo",
 			"style" : 
 			{
-				"navigationBarTitleText" : "修改个人信息",
+				"navigationBarTitleText" : "个人信息",
 				"enablePullDownRefresh" : false
 			}
 		},
@@ -31,10 +35,10 @@
 			}
 		},
 		{
-			"path" : "pages/home/home",
+			"path" : "pages/home/wangzhen",
 			"style" : 
 			{
-				"navigationBarTitleText" : "主页",
+				"navigationBarTitleText" : "望诊",
 				"enablePullDownRefresh" : false
 			}
 		},
@@ -45,9 +49,104 @@
 				"navigationBarTitleText" : "登录",
 				"enablePullDownRefresh" : false
 			}
+		},
+		{
+			"path" : "pages/home/wenzhen",
+			"style" : 
+			{
+				"navigationBarTitleText" : "问诊",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/home/wangzhen/face",
+			"style" : 
+			{
+				"navigationBarTitleText" : "面诊",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/home/wangzhen/tongue",
+			"style" : 
+			{
+				"navigationBarTitleText" : "舌诊",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/home/wangzhen/ear",
+			"style" : 
+			{
+				"navigationBarTitleText" : "耳诊",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/user/updatePersonalInfo",
+			"style" : 
+			{
+				"navigationBarTitleText" : "",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/doctor/wangzhen/ear",
+			"style" : 
+			{
+				"navigationBarTitleText" : "",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/doctor/wangzhen/face",
+			"style" : 
+			{
+				"navigationBarTitleText" : "",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/doctor/wangzhen/tongue",
+			"style" : 
+			{
+				"navigationBarTitleText" : "",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/doctor/wangzhen/wangzhen",
+			"style" : 
+			{
+				"navigationBarTitleText" : "",
+				"enablePullDownRefresh" : false
+			}
 		}
 		
 	],
+	
+	"tabBar": {
+			"backgroundColor": "#F8F8F8",
+			"color": "#8F8F94",
+			"list": [{
+				"text": "望诊",
+				"pagePath": "pages/home/wangzhen"
+				// "iconPath": "static/api_select.png", //未选中时的图标
+				// "selectedIconPath": "static/api.png" //选中后图标
+			}, {
+				"text": "问诊",
+				"pagePath": "pages/home/wenzhen"
+				// "iconPath": "static/A.png", //未选中时的图标
+				// "selectedIconPath": "static/B.png" //选中后图标
+			}, {
+				"text": "我的",
+				"pagePath": "pages/user/PersonalInfo"
+				// "iconPath": "static/A.png", //未选中时的图标
+				// "selectedIconPath": "static/B.png" //选中后图标
+			}]
+		},	
+	
+	
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-app",

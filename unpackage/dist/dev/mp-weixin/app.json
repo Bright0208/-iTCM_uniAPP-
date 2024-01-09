@@ -4,8 +4,17 @@
     "pages/index/index",
     "pages/user/PersonalInfo",
     "pages/user/register",
-    "pages/home/home",
-    "pages/user/login"
+    "pages/home/wangzhen",
+    "pages/user/login",
+    "pages/home/wenzhen",
+    "pages/home/wangzhen/face",
+    "pages/home/wangzhen/tongue",
+    "pages/home/wangzhen/ear",
+    "pages/user/updatePersonalInfo",
+    "pages/doctor/wangzhen/ear",
+    "pages/doctor/wangzhen/face",
+    "pages/doctor/wangzhen/tongue",
+    "pages/doctor/wangzhen/wangzhen"
   ],
   "subPackages": [],
   "window": {
@@ -13,6 +22,24 @@
     "navigationBarTitleText": "uni-app",
     "navigationBarBackgroundColor": "#F8F8F8",
     "backgroundColor": "#F8F8F8"
+  },
+  "tabBar": {
+    "backgroundColor": "#F8F8F8",
+    "color": "#8F8F94",
+    "list": [
+      {
+        "text": "望诊",
+        "pagePath": "pages/home/wangzhen"
+      },
+      {
+        "text": "问诊",
+        "pagePath": "pages/home/wenzhen"
+      },
+      {
+        "text": "我的",
+        "pagePath": "pages/user/PersonalInfo"
+      }
+    ]
   },
   "usingComponents": {}
 }

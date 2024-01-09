@@ -185,6 +185,7 @@ exports.default = void 0;
 //
 
 var defaultAvatarUrl = 'https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0';
+var token = "";
 var _default = {
   data: function data() {
     return {
@@ -212,10 +213,10 @@ var _default = {
     getToken: function getToken() {
       // 使用try-catch来处理可能的异常
       try {
-        var token = uni.getStorageSync('token');
-        if (token) {
+        this.token = uni.getStorageSync('token');
+        if (this.token) {
           // 如果token存在，执行相关操作
-          console.log('获取到的token:', token);
+          console.log('获取到的token:', this.token);
         } else {
           // token不存在的处理逻辑
           console.warn('未找到token，可能需要重新登录');
@@ -244,8 +245,9 @@ var _default = {
     // 输入框输入或选择微信昵称
     onInputNickname: function onInputNickname(event) {
       this.userInfo.nickname = event.target.value;
-      console.log("this.userInfo.nickname");
-      console.log(this.userInfo.nickname);
+    },
+    handleBlur: function handleBlur(event) {
+      this.userInfo.nickname = event.target.value;
     },
     onGenderChange: function onGenderChange(event) {
       this.userInfo.genderIndex = event.target.value;
@@ -257,18 +259,67 @@ var _default = {
       this.idCardValid = /^[1-9]\d{5}[1-9]\d{3}((0[1-9])|(1[0-2]))(([0-2][1-9])|10|20|30|31)\d{3}([0-9]|X)$/.test(this.userInfo.idCard);
     },
     validateInfo: function validateInfo() {
-      // 可以在这里做提交前的最终验证，以确保所有的信息都是有效的
-      if (this.phoneValid && this.idCardValid) {
-        // 提交信息
-        console.log('提交的用户信息：', this.userInfo);
-        uni.showToast({
-          title: '验证通过，信息已提交',
-          icon: 'success',
-          duration: 2000
-        });
+      if (this.userInfo.phone != "" && this.userInfo.idCard != "") {
+        // 可以在这里做提交前的最终验证，以确保所有的信息都是有效的
+        if (this.phoneValid && this.idCardValid) {
+          // 提交信息
+
+          console.log('提交的用户信息：', this.userInfo);
+          uni.showToast({
+            title: '验证通过，信息已提交',
+            icon: 'success',
+            duration: 2000
+          });
+          uni.request({
+            url: 'http://localhost:9001/user/register',
+            method: 'POST',
+            data: {
+              token: this.token,
+              avatarUrl: this.userInfo.avatarUrl,
+              nickname: this.userInfo.nickname,
+              name: this.userInfo.name,
+              genderIndex: this.userInfo.genderIndex,
+              //0男1女
+              age: this.userInfo.age,
+              phone: this.userInfo.phone,
+              idCard: this.userInfo.idCard
+            },
+            success: function success(res) {
+              if (res.statusCode >= 200 && res.statusCode < 300) {
+                uni.showToast({
+                  title: '注册成功，即将跳转',
+                  icon: 'none',
+                  duration: 1000
+                });
+                if (res.data.identity == 2) {
+                  uni.switchTab({
+                    url: '/pages/home/wangzhen'
+                  });
+                } else {
+                  console.log(res.data.identity);
+                }
+              } else {
+                uni.showToast({
+                  title: '注册失败',
+                  icon: 'none',
+                  duration: 1000
+                });
+              }
+            },
+            fail: function fail(err) {
+              console.log('注册失败：' + err.errMsg);
+            }
+          });
+        } else {
+          uni.showToast({
+            title: '信息填写有误，请检查',
+            icon: 'none',
+            duration: 2000
+          });
+        }
       } else {
         uni.showToast({
-          title: '信息填写有误，请检查',
+          title: '请提交完整信息',
           icon: 'none',
           duration: 2000
         });

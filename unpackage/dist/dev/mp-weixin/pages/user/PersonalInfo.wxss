@@ -1,61 +1,196 @@
 
-.container {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 页面容器 */
+.page-container {
+  padding: 20rpx;
+  background-color: #f8f8f8;
+}
+/* 头部区域样式 */
+.header-section {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  padding: 20px;
+  background-color: #ffffff;
+  padding: 20rpx;
+  margin-bottom: 20rpx;
 }
-.avatar-container {
-  border: none;
-  outline: none;
-  background-color: transparent;	  
-  margin-bottom: 30px;
-  border-radius: 50%;
+.user-avatar {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%; /* 圆形头像 */
+  margin-right: 20rpx;
 }
-.avatar {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-}
-.info-item {
+.nickname-and-arrow {
   display: flex;
   align-items: center;
-  margin-bottom: 20px;
-  width: 100%;
-}
-.info-label {
-  width: 60px;
-  color: #333;
-}
-.info-value, .info-picker {
   flex: 1;
-  /* border: 1px solid #ddd; */
-  padding: 10px;
-  border-radius: 5px;
-  background-color: #fff;
 }
-.picker-display {
-  padding-left: 5px; /* 与输入框文字对齐 */
+.nickname-text {
+  font-size: 32rpx;
+  color: #333;
+  flex: 1; /* 昵称占据剩余空间 */
 }
-.error-msg {
-  color: red;
-  padding-left: 10px;
+.arrow-icon {
+  font-size: 24rpx;
+  color: #c0c0c0;
+  padding: 10rpx; /* 箭头周围的空间 */
 }
-.submit-btn {
-  width: 100%;
-  padding: 10px 0;
-  font-size: 16px;
-  background-color: #000;
-  color: #fff;
-  border-radius: 5px;
-  border: none;
-  margin-top: 20px; /* 与其他元素分开 */
+/* 望诊结果区域样式 */
+.diagnosis-section {
+  background-color: #ffffff;
+  padding: 20rpx;
+  margin-bottom: 30rpx;
 }
-.info-notice {
-  font-size: 12px; /* 设置小字号大小 */
-  color: #999; /* 设置字体颜色 */
-  text-align: center; /* 文字居中 */
-  padding: 10px 0; /* 上下间距，左右不设置 */
-  margin-top: 20px; /* 如有需要，可设置间距 */
+.diagnosis-title {
+  font-size: 38rpx;
+  color: #333;
+  margin-bottom: 10rpx;
+}
+.result-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10rpx;
+}
+.item-title {
+  font-size: 34rpx;
+  color: #666;
+  min-width: 100rpx;
+}
+.item-desc {
+  font-size: 34rpx;
+  color: #666;
+  flex: 1;
+}
+/* 问诊结果区域样式 */
+.inquiry-section {
+  background-color: #ffffff;
+  padding: 20rpx;
+}
+.inquiry-title {
+  font-size: 38rpx;
+  color: #333;
+  margin-bottom: 10rpx;
+}
+.inquiry-content {
+  font-size: 34rpx;
+  color: #666;
 }
 

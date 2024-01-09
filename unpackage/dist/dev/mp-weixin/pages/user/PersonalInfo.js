@@ -183,96 +183,69 @@ exports.default = void 0;
 //
 //
 //
-
-var defaultAvatarUrl = 'https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0';
 var _default = {
   data: function data() {
     return {
-      genderArray: ['男', '女'],
-      userInfo: {
-        avatarUrl: defaultAvatarUrl,
-        nickname: '',
-        name: '',
-        genderIndex: 0,
-        //初始化默认选中第一项，即‘男’
-        age: '',
-        phone: '',
-        idCard: ''
-      },
-      phoneValid: true,
-      idCardValid: true
+      // 页面的数据
+      avatarUrl: "",
+      nickname: '',
+      wenzhenResult: "",
+      earDiagnosticResultsRemarks: "",
+      faceDiagnosticResultsRemarks: "",
+      tongueFaceDiagnosticResultsRemarks: ""
     };
   },
   onLoad: function onLoad() {
-    // 在页面加载时获取存储的token
-    this.getToken();
+    this.getAvatarAndNickname();
+    this.getPersonalResult();
   },
   methods: {
-    //获取到JWTtoken值 
-    getToken: function getToken() {
-      // 使用try-catch来处理可能的异常
-      try {
-        var token = uni.getStorageSync('token');
-        if (token) {
-          // 如果token存在，执行相关操作
-          console.log('获取到的token:', token);
-        } else {
-          // token不存在的处理逻辑
-          console.warn('未找到token，可能需要重新登录');
+    // 页面的方法
+    navigateToEditProfile: function navigateToEditProfile() {
+      // 导航到修改个人信息页面的逻辑
+      uni.navigateTo({
+        url: '/pages/user/updatePersonalInfo' // 修改为真实的页面路径
+      });
+    },
+    //获取个人头像和昵称
+    getAvatarAndNickname: function getAvatarAndNickname() {
+      var _this = this;
+      uni.request({
+        url: 'http://localhost:9001/user/getAvatarAndNickname',
+        method: 'GET',
+        data: {
+          token: uni.getStorageSync('token')
         }
-      } catch (e) {
-        // 获取token过程中出现错误的处理逻辑
-        console.error('获取token失败:', e);
-      }
+      }).then(function (response) {
+        console.log(response.data.user);
+        // 请求成功的处理
+        _this.avatarUrl = response.data.user.avatarUrl;
+        _this.nickname = response.data.user.nickName;
+      }).catch(function (error) {
+        // 请求失败的处理
+        console.error(error);
+      });
     },
-    // 选择头像
-    onChooseAvatar: function onChooseAvatar(e) {
-      var avatarUrl = e.detail.avatarUrl;
-      this.userInfo.avatarUrl = avatarUrl;
-      // uni.uploadFile({
-      //   filePath: avatarUrl,
-      //   name: 'avatarImg',
-      //   url: uploadUrl, // 服务器端接收图片的路径
-      //   success: function(res) {
-      //     console.log(res); // 发送成功回调
-      //   },
-      //   fail: function(res) {
-      //     console.log(res); // 发送失败回调，可以在这里了解失败原因
-      //   }
-      // }); 
-    },
-    // 输入框输入或选择微信昵称
-    onInputNickname: function onInputNickname(event) {
-      this.userInfo.nickname = event.target.value;
-      console.log("this.userInfo.nickname");
-      console.log(this.userInfo.nickname);
-    },
-    onGenderChange: function onGenderChange(event) {
-      this.userInfo.genderIndex = event.target.value;
-    },
-    validatePhone: function validatePhone() {
-      this.phoneValid = /^1\d{10}$/.test(this.userInfo.phone);
-    },
-    validateIdCard: function validateIdCard() {
-      this.idCardValid = /^[1-9]\d{5}[1-9]\d{3}((0[1-9])|(1[0-2]))(([0-2][1-9])|10|20|30|31)\d{3}([0-9]|X)$/.test(this.userInfo.idCard);
-    },
-    validateInfo: function validateInfo() {
-      // 可以在这里做提交前的最终验证，以确保所有的信息都是有效的
-      if (this.phoneValid && this.idCardValid) {
-        // 提交信息
-        console.log('提交的用户信息：', this.userInfo);
-        uni.showToast({
-          title: '验证通过，信息已提交',
-          icon: 'success',
-          duration: 2000
-        });
-      } else {
-        uni.showToast({
-          title: '信息填写有误，请检查',
-          icon: 'none',
-          duration: 2000
-        });
-      }
+    //获取诊断结果
+    getPersonalResult: function getPersonalResult() {
+      var _this2 = this;
+      uni.request({
+        url: 'http://localhost:9004/personalResults/get',
+        method: 'GET',
+        data: {
+          token: uni.getStorageSync('token')
+        }
+      }).then(function (response) {
+        // 请求成功的处理
+        console.log(response.data[0]);
+        _this2.wenzhenResult = response.data[0].wenzhenResult;
+        _this2.earDiagnosticResultsRemarks = response.data[0].earDiagnosticResultsRemarks;
+        _this2.faceDiagnosticResultsRemarks = response.data[0].faceDiagnosticResultsRemarks;
+        _this2.tongueFaceDiagnosticResultsRemarks = response.data[0].tongueFaceDiagnosticResultsRemarks;
+      }).catch(function (error) {
+        // 请求失败的处理
+        console.error(error);
+      });
     }
   }
 };
