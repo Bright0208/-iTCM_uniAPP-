@@ -14,7 +14,12 @@
     "pages/doctor/wangzhen/ear",
     "pages/doctor/wangzhen/face",
     "pages/doctor/wangzhen/tongue",
-    "pages/doctor/wangzhen/wangzhen"
+    "pages/doctor/wangzhen/wangzhen",
+    "pages/tabBar/tabBar",
+    "pages/doctor/PersonalInfo",
+    "pages/doctor/wangzhen_revise/ear",
+    "pages/doctor/wangzhen_revise/face",
+    "pages/doctor/wangzhen_revise/tongue"
   ],
   "subPackages": [],
   "window": {
@@ -24,20 +29,21 @@
     "backgroundColor": "#F8F8F8"
   },
   "tabBar": {
-    "backgroundColor": "#F8F8F8",
-    "color": "#8F8F94",
     "list": [
       {
-        "text": "望诊",
         "pagePath": "pages/home/wangzhen"
       },
       {
-        "text": "问诊",
         "pagePath": "pages/home/wenzhen"
       },
       {
-        "text": "我的",
         "pagePath": "pages/user/PersonalInfo"
+      },
+      {
+        "pagePath": "pages/doctor/wangzhen/wangzhen"
+      },
+      {
+        "pagePath": "pages/doctor/PersonalInfo"
       }
     ]
   },

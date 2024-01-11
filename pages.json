@@ -86,7 +86,7 @@
 			"path" : "pages/user/updatePersonalInfo",
 			"style" : 
 			{
-				"navigationBarTitleText" : "",
+				"navigationBarTitleText" : "修改个人信息",
 				"enablePullDownRefresh" : false
 			}
 		},
@@ -94,7 +94,7 @@
 			"path" : "pages/doctor/wangzhen/ear",
 			"style" : 
 			{
-				"navigationBarTitleText" : "",
+				"navigationBarTitleText" : "医生耳诊",
 				"enablePullDownRefresh" : false
 			}
 		},
@@ -102,7 +102,7 @@
 			"path" : "pages/doctor/wangzhen/face",
 			"style" : 
 			{
-				"navigationBarTitleText" : "",
+				"navigationBarTitleText" : "医生面诊",
 				"enablePullDownRefresh" : false
 			}
 		},
@@ -110,12 +110,52 @@
 			"path" : "pages/doctor/wangzhen/tongue",
 			"style" : 
 			{
-				"navigationBarTitleText" : "",
+				"navigationBarTitleText" : "医生舌诊",
 				"enablePullDownRefresh" : false
 			}
 		},
 		{
 			"path" : "pages/doctor/wangzhen/wangzhen",
+			"style" : 
+			{
+				"navigationBarTitleText" : "医生望诊",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/tabBar/tabBar",
+			"style" : 
+			{
+				"navigationBarTitleText" : "",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/doctor/PersonalInfo",
+			"style" : 
+			{
+				"navigationBarTitleText" : "",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/doctor/wangzhen_revise/ear",
+			"style" : 
+			{
+				"navigationBarTitleText" : "",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/doctor/wangzhen_revise/face",
+			"style" : 
+			{
+				"navigationBarTitleText" : "",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/doctor/wangzhen_revise/tongue",
 			"style" : 
 			{
 				"navigationBarTitleText" : "",
@@ -126,21 +166,31 @@
 	],
 	
 	"tabBar": {
-			"backgroundColor": "#F8F8F8",
-			"color": "#8F8F94",
+			// "backgroundColor": "#F8F8F8",
+			// "color": "#8F8F94",
 			"list": [{
-				"text": "望诊",
+				// "text": "望诊",
 				"pagePath": "pages/home/wangzhen"
 				// "iconPath": "static/api_select.png", //未选中时的图标
 				// "selectedIconPath": "static/api.png" //选中后图标
 			}, {
-				"text": "问诊",
+				// "text": "问诊",
 				"pagePath": "pages/home/wenzhen"
 				// "iconPath": "static/A.png", //未选中时的图标
 				// "selectedIconPath": "static/B.png" //选中后图标
 			}, {
-				"text": "我的",
+				// "text": "我的",
 				"pagePath": "pages/user/PersonalInfo"
+				// "iconPath": "static/A.png", //未选中时的图标
+				// "selectedIconPath": "static/B.png" //选中后图标
+			},{
+				// "text": "标注",
+				"pagePath": "pages/doctor/wangzhen/wangzhen"
+				// "iconPath": "static/A.png", //未选中时的图标
+				// "selectedIconPath": "static/B.png" //选中后图标
+			},{
+				// "text": "我的",
+				"pagePath": "pages/doctor/PersonalInfo"
 				// "iconPath": "static/A.png", //未选中时的图标
 				// "selectedIconPath": "static/B.png" //选中后图标
 			}]

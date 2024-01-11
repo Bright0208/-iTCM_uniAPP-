@@ -37,11 +37,19 @@
         <text>{{ wenzhenResult }}</text>
       </view>
     </view>
+	<tabBar ref="customTabBar" selectedIndex = 2 ></tabBar>
   </view>
 </template>
-
 <script>
+import tabBar from "@/pages/tabBar/tabBar.vue"
 export default {
+   components:{
+   	    tabBar //引用对应的组件
+   },
+  onShow() {
+    // 更新tabBar的选中索引
+    this.$refs.customTabBar.updateActiveTabIndex();
+  },
   data() {
     return {
       // 页面的数据

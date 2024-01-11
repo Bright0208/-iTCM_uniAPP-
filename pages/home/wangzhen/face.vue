@@ -40,18 +40,22 @@ export default {
         sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
         success: (res) => {
           const tempFilePaths = res.tempFilePaths;
+		  const token = uni.getStorageSync('token');
           // 上传图片
           uni.uploadFile({
             url: 'http://localhost:9003/user-face/upload', // 您的后端接口地址
             filePath: tempFilePaths[0],
             name: 'file', // 这里根据后端的需要进行修改
+			formData: {
+			       'token': token // 将token包含在formData中
+			},
             success: (uploadFileRes) => {
-              console.log(uploadFileRes); // 输出上传结果
-              uni.showToast({
-                title: '上传成功，请勿重复提交',
-                duration: 2000
-              });
-			  this.uploadurl = JSON.parse(uploadFileRes.data).url;
+				console.log(uploadFileRes); // 输出上传结果
+				uni.showToast({
+				  title: '上传成功',
+				  duration: 2000
+				});
+				this.uploadurl = JSON.parse(uploadFileRes.data).url; 
             },
             fail: (uploadFileErr) => {
               console.log(uploadFileErr); // 输出错误信息

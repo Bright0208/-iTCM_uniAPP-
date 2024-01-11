@@ -3,11 +3,25 @@
     <button class="diagnosis-button" @click="navigateTo('face')">面诊</button>
     <button class="diagnosis-button" @click="navigateTo('tongue')">舌诊</button>
     <button class="diagnosis-button" @click="navigateTo('ear')">耳诊</button>
+	<tabBar ref="customTabBar" selectedIndex = 0 ></tabBar>
   </view>
 </template>
 
 <script>
+import tabBar from "@/pages/tabBar/tabBar.vue"
+
+
 export default {
+   components:{
+   	    tabBar //引用对应的组件
+   },
+  onLoad() {
+	uni.hideTabBar()
+  },	
+  onShow() {
+    // 更新tabBar的选中索引
+    this.$refs.customTabBar.updateActiveTabIndex();
+  },	 
   methods: {
     navigateTo(type) {
       // 根据传入的类型跳转到对应页面
@@ -29,6 +43,7 @@ export default {
   height: 100%;
   padding: 20px;
   box-sizing: border-box;
+  padding-bottom: 50px; /* 预留出tabBar的空间 */
 }
 
 .diagnosis-button {

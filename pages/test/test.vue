@@ -68,12 +68,16 @@ export default {
 			              }
 			          });
 			      } else if (identity==2) {
+						uni.setStorageSync('identify','user')
 						uni.switchTab({
 						    url: '/pages/home/wangzhen'
 						});
 			          // 用户已注册，执行其他逻辑
 			      }else{
-					  
+					 uni.setStorageSync('identify','doctor')
+					 uni.switchTab({
+					     url: '/pages/doctor/wangzhen/wangzhen'
+					 }); 
 					  console.log(token);
 				  }
 				  

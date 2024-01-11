@@ -1,0 +1,44 @@
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+.upload-container {
+  margin-bottom: 20px;
+}
+.upload-btn {
+  padding: 10px 100px;/* 增加水平内边距以使按钮更宽 */
+  font-size: 16px;
+  color: #fff;
+  background-color: #1a73e8;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+.upload-btn:active {
+  background-color: #1669c7;
+}
+.text-section {
+  margin-bottom: 10px;
+}
+.image-text {
+  font-size: 18px;
+  color: #333;
+}
+.image-container {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+}
+.sample-image {
+  width: 100%; /* 图片宽度占满容器 */
+  border-radius: 10px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+}
+

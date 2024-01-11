@@ -67,11 +67,13 @@ export default {
 			              }
 			          });
 			      } else if(identity==2) {
+					  uni.setStorageSync('identify','user')
 						uni.redirectTo({
 						    url: '/pages/home/wangzhen'
 						});
 			          // 用户已注册，执行其他逻辑
 			      }else {
+					  uni.setStorageSync('identify','doctor')
 					  uni.redirectTo({
 					      url: '/pages/doctor/wangzhen/wangzhen'
 					  });

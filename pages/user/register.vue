@@ -92,18 +92,7 @@ export default {
 	     avatarUrl
 	   } = e.detail;
 	   this.userInfo.avatarUrl = avatarUrl;
-	// uni.uploadFile({
-	//   filePath: avatarUrl,
-	//   name: 'avatarImg',
-	//   url: uploadUrl, // 服务器端接收图片的路径
-	//   success: function(res) {
-	//     console.log(res); // 发送成功回调
-	//   },
-	//   fail: function(res) {
-	//     console.log(res); // 发送失败回调，可以在这里了解失败原因
-	//   }
-	// }); 
-	
+
 	 },	  
     // 输入框输入或选择微信昵称
     onInputNickname(event) {

@@ -1,6 +1,6 @@
 <template>
 	<view class="container">
-		<view class="row3">患者编号:{{patientId}}</view>
+		<view class="row3">患者编号:{{ patientIdcard }}</view>
 		<view class="image">
 			<image class="img" :src="imgUrl" mode="aspectFit" @click="openPreview"></image>
 		</view>	
@@ -44,7 +44,8 @@
 	export default {
 		data() {
 			return {
-				patientId:"",
+				patientIdcard:"",
+				imageID:"",
 				imgUrl:"",
 				remark: "",
 				options: ['红', '黄', '白', '青', '黑'], // 下拉框选项数组
@@ -136,10 +137,9 @@
 			// 点击保存按钮，将数据传到后台
 			saveData() {
 				let data = {}
-				data["patientID"]=this.patientId;
 				data["remark"]=this.remark;
 				data["selectedOption"]=this.selectedOption;
-				
+				data["imageID"]=this.imageID
 				//整合数据
 				this.pickers.forEach(item => {
 				    data[item.name] = item.selectedValue;
@@ -149,11 +149,14 @@
 				console.log(data);  
 				//发送请求
 				uni.request({
-			        url: 'http://8.130.120.142:9000/erzhen/update',
+			        url: 'http://localhost:9003/erzhen/update',
 			        method: 'POST', // 根据实际情况设置请求方法，如GET、POST等
-					header:{"Content-Type": "application/json"},
-			        data: { 
-			          patientID: data["patientID"],
+					header:{"Content-Type": "application/json",
+							"token": uni.getStorageSync('token')
+					},
+			        data: {
+					  token:uni.getStorageSync('token'),
+					  imageID: data["imageID"],
 					  whole:data["selectedOption"],
 					  kidneys:data["肾"],
 					  liverAndGallbladder:data["肝胆"],
@@ -186,16 +189,31 @@
 			fetchData() {
 			  // 发送HTTP请求到后端接口
 			  uni.request({
-			    url: 'http://8.130.120.142:9000/erzhen/getFirstNotDone',
+			    url: 'http://localhost:9003/erzhen/getFirstNotDone',
 			    method: 'GET',
 			    success: (res) => {
-			      // 请求成功，处理返回的数据
-						   this.patientId=res.data.data.one.patientID
-						   this.imgUrl=res.data.data.one.imgUrl
-			      // 更新页面数据或者其他操作
+				  if(res.statusCode >= 200 && res.statusCode < 300){
+				      // 请求成功，处理返回的数据
+				      console.log(res.data);
+				      this.patientIdcard=res.data.Idcard
+				      this.imgUrl=res.data.user.imgUrl
+				      this.imageID= res.data.user.imageID
+				      console.log( this.imageID);  
+				   }else{
+				  	 uni.showToast({
+				  	  title: '没有数据了',
+				  	  icon: 'none',
+				  	  duration: 4000
+				  	 });
+				   }		
 			    },
 			    fail: (error) => {
 			      // 请求失败，处理错误信息
+				  uni.showToast({
+				    title: '没有数据了',
+				    icon: 'none',
+				    duration: 2000
+				  });
 			      console.error(error)
 			    }
 			  })
@@ -203,7 +221,7 @@
 			//刷新页面
 			refreshPage() {
 			   uni.redirectTo({
-			     url: '/pages/list/list3' // 页面3的路径
+			     url: '/pages/doctor/wangzhen/ear' // 页面3的路径
 			   });
 						}   
 		}

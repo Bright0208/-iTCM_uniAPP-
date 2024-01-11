@@ -1,6 +1,6 @@
 <template>
 	<view class="container2">
-		<view class="row3">患者编号:{{patientId}}</view>
+		<view class="row3">患者编号:{{patientIdcard}}</view>
 		<view class="image">
 			<image class="img" :src="imgUrl" mode="aspectFit" @click="openPreview"></image>
 		</view>	
@@ -53,7 +53,8 @@
 	export default {
 		data() {
 			return {
-				patientId:"",
+				patientIdcard:"",
+				imageID:"",
 				imgUrl:"",
 				remark1: "",
 				remark2: "",
@@ -207,10 +208,9 @@
 			// 点击保存按钮，将数据传到后台
 			saveData() {
 				let data = {}
-				data["patientID"]=this.patientId;
 				data["remark1"]=this.remark1;
 				data["remark2"]=this.remark2;
-				
+				data["imageID"]=this.imageID
 				this.formData.forEach(item => {
 				    data[item.title] = item.values;
 				});
@@ -253,11 +253,13 @@
 			
 				//发送请求
 				uni.request({
-			        url: 'http://8.130.120.142:9000/shezhen/update',
+			        url: 'http://localhost:9003/shezhen/update',
 			        method: 'POST', // 根据实际情况设置请求方法，如GET、POST等
-					header:{"Content-Type": "application/json"},
+					header:{"Content-Type": "application/json",
+							"token": uni.getStorageSync('token')
+					},
 			        data: { 
-			          patientID: data["patientID"],
+					  imageID: data["imageID"],
 					  tongueColor:data["舌色"],
 					  tongueShape:data["舌形"],
 					  moss:data["苔色"],
@@ -293,13 +295,22 @@
 			fetchData() {
 			  // 发送HTTP请求到后端接口
 			  uni.request({
-			    url: 'http://8.130.120.142:9000/shezhen/getFirstNotDone',
+			    url: 'http://localhost:9003/shezhen/getFirstNotDone',
 			    method: 'GET',
 			    success: (res) => {
-			      // 请求成功，处理返回的数据
-						   this.patientId=res.data.data.one.patientID
-						   this.imgUrl=res.data.data.one.imgUrl
-			      // 更新页面数据或者其他操作
+					if(res.statusCode >= 200 && res.statusCode < 300){
+			              // 请求成功，处理返回的数据
+				  	      this.patientIdcard=res.data.Idcard
+				  	      this.imgUrl=res.data.user.imgUrl
+				  	      this.imageID= res.data.user.imageID
+			              // 更新页面数据或者其他操作
+					 }else{
+						 uni.showToast({
+						  title: '没有数据了',
+						  icon: 'none',
+						  duration: 4000
+						 });
+					 }	
 			    },
 			    fail: (error) => {
 			      // 请求失败，处理错误信息
