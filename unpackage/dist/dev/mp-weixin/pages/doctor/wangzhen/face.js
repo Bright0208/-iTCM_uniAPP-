@@ -289,11 +289,6 @@ var _default = {
     };
   },
   onLoad: function onLoad() {
-    //获取全局变量 赋值后处理业务逻辑
-    var app = getApp();
-    this.userLoginFlag = app.globalData.userLogin;
-    console.log(app.globalData);
-
     // 在页面加载时调用后端接口请求数据
     this.fetchData();
   },
@@ -404,7 +399,7 @@ var _default = {
 
       //发送请求
       uni.request({
-        url: 'http://localhost:9003/wangzhen/update',
+        url: 'http://121.41.80.48:9003/wangzhen/update',
         method: 'POST',
         // 根据实际情况设置请求方法，如GET、POST等
         header: {
@@ -457,7 +452,7 @@ var _default = {
       var _this4 = this;
       // 发送HTTP请求到后端接口
       uni.request({
-        url: 'http://localhost:9003/wangzhen/getFirstNotDone',
+        url: 'http://121.41.80.48:9003/wangzhen/getFirstNotDone',
         method: 'GET',
         success: function success(res) {
           if (res.statusCode >= 200 && res.statusCode < 300) {

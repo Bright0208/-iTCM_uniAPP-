@@ -87,7 +87,7 @@ export default {
 	//获取个人头像和昵称
 	getAvatarAndNickname(){
 		uni.request({
-		    url: 'http://localhost:9001/user/getAvatarAndNickname',
+		    url: 'http://121.41.80.48:9001/user/getAvatarAndNickname',
 		    method: 'GET',
 		    data: {
 		        token: uni.getStorageSync('token')

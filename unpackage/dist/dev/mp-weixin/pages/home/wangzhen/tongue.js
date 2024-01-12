@@ -188,7 +188,7 @@ var _default = {
           var token = uni.getStorageSync('token');
           // 上传图片
           uni.uploadFile({
-            url: 'http://localhost:9003/user-tongue/upload',
+            url: 'http://121.41.80.48:9003/user-tongue/upload',
             // 您的后端接口地址
             filePath: tempFilePaths[0],
             name: 'file',

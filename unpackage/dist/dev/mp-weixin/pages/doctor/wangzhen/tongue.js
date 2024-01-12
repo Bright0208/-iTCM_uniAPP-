@@ -365,7 +365,7 @@ var _default = {
 
       //发送请求
       uni.request({
-        url: 'http://localhost:9003/shezhen/update',
+        url: 'http://121.41.80.48:9003/shezhen/update',
         method: 'POST',
         // 根据实际情况设置请求方法，如GET、POST等
         header: {
@@ -408,7 +408,7 @@ var _default = {
       var _this4 = this;
       // 发送HTTP请求到后端接口
       uni.request({
-        url: 'http://localhost:9003/shezhen/getFirstNotDone',
+        url: 'http://121.41.80.48:9003/shezhen/getFirstNotDone',
         method: 'GET',
         success: function success(res) {
           if (res.statusCode >= 200 && res.statusCode < 300) {
@@ -434,7 +434,7 @@ var _default = {
     //刷新页面
     refreshPage: function refreshPage() {
       uni.redirectTo({
-        url: '/pages/list/list2' // 替换成当前页面路径
+        url: '/pages/doctor/wangzhen/tongue' // 替换成当前页面路径
       });
     }
   }

@@ -208,7 +208,7 @@ var _default = {
     getUserInfo: function getUserInfo() {
       var _this = this;
       uni.request({
-        url: 'http://localhost:9001/user/getAvatarAndNickname',
+        url: 'http://121.41.80.48:9001/user/getAvatarAndNickname',
         method: 'GET',
         data: {
           token: uni.getStorageSync('token')
@@ -256,7 +256,7 @@ var _default = {
             duration: 2000
           });
           uni.request({
-            url: 'http://localhost:9001/user/register',
+            url: 'http://121.41.80.48:9001/user/register',
             method: 'POST',
             data: {
               token: uni.getStorageSync('token'),

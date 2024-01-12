@@ -220,7 +220,7 @@ var _default = {
     getAvatarAndNickname: function getAvatarAndNickname() {
       var _this = this;
       uni.request({
-        url: 'http://localhost:9001/user/getAvatarAndNickname',
+        url: 'http://121.41.80.48:9001/user/getAvatarAndNickname',
         method: 'GET',
         data: {
           token: uni.getStorageSync('token')
@@ -239,7 +239,7 @@ var _default = {
     getPersonalResult: function getPersonalResult() {
       var _this2 = this;
       uni.request({
-        url: 'http://localhost:9004/personalResults/get',
+        url: 'http://121.41.80.48:9004/personalResults/get',
         method: 'GET',
         data: {
           token: uni.getStorageSync('token')

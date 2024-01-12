@@ -8,7 +8,7 @@
 		
 		<view class="flex-container2">
 			<view>整体(基色)</view>
-			<picker mode="selector"  :range="options" @change="onPickerChange">
+			<picker disabled="true" mode="selector"  :range="options" @change="onPickerChange">
 	        <view class="spaced-text2">{{ selectedOption }}</view>
 			</picker>	
 		</view>
@@ -21,7 +21,7 @@
 		
 		<view class="container">
 		<block v-for="(item, index) in pickers" :key="index">
-			<picker mode="multiSelector" @change="pick" :data-index="index" :value="item.index" :range="ranges">
+			<picker disabled="true" mode="multiSelector" @change="pick" :data-index="index" :value="item.index" :range="ranges">
 			<view class="flex-container">
 				<view class="item">{{ item.name }}</view>
 				<view class="spaced-text">{{ item.selectedValue }}</view>
@@ -32,11 +32,11 @@
 		
 		<view class="row">
 		  <view class="remark_cell">备注：</view>
-		  <input class="remark_input" v-model="remark" type="text" placeholder="请输入备注" />
+		  <input disabled="true" class="remark_input" v-model="remark" type="text"  />
 		</view>
 		<view class="button-container">
-		    <button class="half-width-button save-button" @click="previous">上一页</button>
-		    <button class="half-width-button next-button" @click="next">下一页</button>
+		    <button class="half-width-button save-button" @click="previous">上一个</button>
+		    <button class="half-width-button next-button" @click="next">下一个</button>
 		  </view>
 	</view>
 </template>
@@ -134,7 +134,7 @@ methods: {
 	fetchData() {
 	  // 发送HTTP请求到后端接口
 	  uni.request({
-	    url: 'http://localhost:9003/erzhen/getDone',
+	    url: 'http://121.41.80.48:9003/erzhen/getDone',
 	    method: 'GET',
 		header:{"Content-Type": "application/json",
 				"token": uni.getStorageSync('token')
@@ -178,80 +178,80 @@ methods: {
 	},
 	
 	
-    //点击保存按钮，弹出提示框,在这个页面里目前没用
-    onSaveClick() {
-      uni.showModal({
-        title: '提示',
-        content: '是否要保存？结果无法更改',
-        success: (res) => {
-          if (res.confirm) { // 用户点击了确定按钮
-            this.saveData();
-          } else if (res.cancel) { // 用户点击了取消按钮
+ //    //点击保存按钮，弹出提示框,在这个页面里目前没用
+ //    onSaveClick() {
+ //      uni.showModal({
+ //        title: '提示',
+ //        content: '是否要保存？结果无法更改',
+ //        success: (res) => {
+ //          if (res.confirm) { // 用户点击了确定按钮
+ //            this.saveData();
+ //          } else if (res.cancel) { // 用户点击了取消按钮
             
-          }
-        }
-      });
-    },	
-	//点击下一页按钮，弹出提示框,在这个页面里目前没用
-	onNextClick() {
-	  uni.showModal({
-	    title: '提示',
-	    content: '是否已保存？进入下一位',
-	    success: (res) => {
-	      if (res.confirm) { // 用户点击了确定按钮
-	        this.refreshPage();
-	      } else if (res.cancel) { // 用户点击了取消按钮
+ //          }
+ //        }
+ //      });
+ //    },	
+	// //点击下一页按钮，弹出提示框,在这个页面里目前没用
+	// onNextClick() {
+	//   uni.showModal({
+	//     title: '提示',
+	//     content: '是否已保存？进入下一位',
+	//     success: (res) => {
+	//       if (res.confirm) { // 用户点击了确定按钮
+	//         this.refreshPage();
+	//       } else if (res.cancel) { // 用户点击了取消按钮
 	        
-	      }
-	    }
-	  });
-	},
-	// 点击保存按钮，将数据传到后台,在这个页面里目前没用
-	saveData() {
-		let data = {}
-		data["remark"]=this.remark;
-		data["selectedOption"]=this.selectedOption;
-		data["imageID"]=this.imageID
-		//整合数据
-		this.pickers.forEach(item => {
-		    data[item.name] = item.selectedValue;
-		});
-		//整合数据
+	//       }
+	//     }
+	//   });
+	// },
+	// // 点击保存按钮，将数据传到后台,在这个页面里目前没用
+	// saveData() {
+	// 	let data = {}
+	// 	data["remark"]=this.remark;
+	// 	data["selectedOption"]=this.selectedOption;
+	// 	data["imageID"]=this.imageID
+	// 	//整合数据
+	// 	this.pickers.forEach(item => {
+	// 	    data[item.name] = item.selectedValue;
+	// 	});
+	// 	//整合数据
 		
-		console.log(data);  
-		//发送请求
-		uni.request({
-	        url: 'http://localhost:9003/erzhen/update',
-	        method: 'POST', // 根据实际情况设置请求方法，如GET、POST等
-			header:{"Content-Type": "application/json",
-					"token": uni.getStorageSync('token')
-			},
-	        data: {
-			  token:uni.getStorageSync('token'),
-			  imageID: data["imageID"],
-			  whole:data["selectedOption"],
-			  kidneys:data["肾"],
-			  liverAndGallbladder:data["肝胆"],
-			  spleenAndStomach:data["脾胃"],
-			  lungs:data["肺"],
-			  heart:data["心"],
-			  diagnosticResultsRemarks:data["remark"],
-	          done:1,
-	        },
-	        success(res) {
-			  uni.showToast({
-			    title: '保存成功',
-			    icon: 'success'
-			  });
-	          console.log('发送数据成功', res.data);
-	          // 处理返回的响应结果
-	        },
-	        fail(err) {
-	          console.error('发送数据失败', err);
-	          // 处理错误情况
-	        }
-	      });
-	  },
+	// 	console.log(data);  
+	// 	//发送请求
+	// 	uni.request({
+	//         url: 'http://121.41.80.48:9003/erzhen/update',
+	//         method: 'POST', // 根据实际情况设置请求方法，如GET、POST等
+	// 		header:{"Content-Type": "application/json",
+	// 				"token": uni.getStorageSync('token')
+	// 		},
+	//         data: {
+	// 		  token:uni.getStorageSync('token'),
+	// 		  imageID: data["imageID"],
+	// 		  whole:data["selectedOption"],
+	// 		  kidneys:data["肾"],
+	// 		  liverAndGallbladder:data["肝胆"],
+	// 		  spleenAndStomach:data["脾胃"],
+	// 		  lungs:data["肺"],
+	// 		  heart:data["心"],
+	// 		  diagnosticResultsRemarks:data["remark"],
+	//           done:1,
+	//         },
+	//         success(res) {
+	// 		  uni.showToast({
+	// 		    title: '保存成功',
+	// 		    icon: 'success'
+	// 		  });
+	//           console.log('发送数据成功', res.data);
+	//           // 处理返回的响应结果
+	//         },
+	//         fail(err) {
+	//           console.error('发送数据失败', err);
+	//           // 处理错误情况
+	//         }
+	//       });
+	//   },
 		
 			
     }

@@ -125,7 +125,7 @@ export default {
           duration: 2000
         });
 		uni.request({
-		  url: 'http://localhost:9001/user/register',
+		  url: 'http://121.41.80.48:9001/user/register',
 		  method: 'POST',
 		  data: {
 			token: this.token,

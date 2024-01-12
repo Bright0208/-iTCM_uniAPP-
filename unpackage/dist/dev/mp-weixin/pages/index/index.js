@@ -195,7 +195,7 @@ var _default = {
           console.log(res.code);
           if (res.code) {
             uni.request({
-              url: 'http://localhost:9001/wxlogin/login',
+              url: 'http://121.41.80.48:9001/wxlogin/login',
               method: 'POST',
               data: {
                 code: res.code
