@@ -325,6 +325,7 @@ export default {
 <style>
 .container {
   padding: 20px; /* 容器内边距 */
+  padding-bottom: 100px;
 }
 
 .question-container {

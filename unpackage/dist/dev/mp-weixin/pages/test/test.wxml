@@ -1,1 +1,0 @@
-<view class="container"><view class="logo-container"><image class="logo" src="https://img2.baidu.com/it/u=2663264561,635415515&fm=253&fmt=auto&app=138&f=JPEG?w=657&h=500" mode="aspectFit"></image></view><view class="button-container"><button data-event-opts="{{[['tap',[['onWechatLogin',['$event']]]]]}}" class="button-common login-btn" bindtap="__e">微信登录</button></view></view>

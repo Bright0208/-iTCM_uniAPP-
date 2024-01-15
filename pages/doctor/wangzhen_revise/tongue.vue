@@ -20,7 +20,9 @@
 			<picker disabled="true" mode="multiSelector" @change="pick" :data-index="index" :value="item.index" :range="ranges[index]" >
 			<view class="flex-container">
 				<view class="item">{{ item.name }}</view>
-				<view class="spaced-text">{{ item.selectedValue }}</view>
+				<view class="spaced-text">
+					<text class="word" v-for="(word, index) in item.selectedValue.split(' ')" :key="index">{{ word }}</text>
+				</view>
 			</view>
 			</picker>
 		</block>
@@ -501,7 +503,7 @@
 }
 .flex-container {
   display: flex;
-  padding: 0rpx;
+  flex-wrap: wrap;
   margin-bottom: 1rpx;
   border: 1px solid #000;
 }
@@ -510,14 +512,13 @@
   margin-right:20rpx;
   word-spacing: 15rpx;
   text-align: right;
+  border-right: 1px solid #000;
 }
 .spaced-text {
   display: flex;
-  align-items: center;
-  margin-right:10rpx;
-  word-spacing: 21rpx; /* 调整空格大小 */
-  text-align: center;
-  border-left: 1px solid #000;
+  justify-content: space-between;
+  flex-wrap: wrap;
+ width: 550rpx; /* 设置最大宽度为100% */
 }
 .row2 {
   display: flex;
