@@ -15,11 +15,14 @@
 		</view>
 		
 		<view class="container">
-		<block v-for="(item, index) in pickers" :key="index">
-			<picker mode="multiSelector" @change="pick" :data-index="index" :value="item.index" :range="ranges[index]" >
+		<block v-for="item in pickers" :key="item.id">
+			<picker mode="multiSelector" @change="pick" :data-index="item.id" :value="item.index" :range="ranges[item.id]" >
 			<view class="flex-container">
 				<view class="item">{{ item.name }}</view>
-				<view class="spaced-text">{{ item.selectedValue }}</view>
+				<!-- <view class="spaced-text">{{ item.selectedValue }}</view> -->
+				<view class="spaced-text">
+					<text class="word" v-for="(word, index) in item.selectedValue.split(' ')" :key="index">{{ word }}</text>
+				</view>
 			</view>
 			</picker>
 		</block>
@@ -99,11 +102,11 @@
 					],
 					
 					pickers: [
-					   { name: "舌色", index: [0, 0, 0, 0, 0, 0], selectedValue: '' },
-					   { name: "舌形", index: [0, 0, 0, 0, 0, 0], selectedValue: '' },
-					   { name: "苔色", index: [0, 0, 0, 0, 0, 0], selectedValue: ''  },
-					   { name: "苔质", index: [0, 0, 0, 0, 0, 0], selectedValue: ''},
-					   { name: "舌苔分布", index: [0, 0, 0, 0, 0, 0], selectedValue: '' },],
+					   {id:0, name: "舌色", index: [0, 0, 0, 0, 0, 0], selectedValue: '' },
+					   {id:1, name: "舌形", index: [0, 0, 0, 0, 0, 0], selectedValue: '' },
+					   {id:2, name: "苔色", index: [0, 0, 0, 0, 0, 0], selectedValue: ''  },
+					   {id:3, name: "苔质", index: [0, 0, 0, 0, 0, 0], selectedValue: ''},
+					   {id:4, name: "舌苔分布", index: [0, 0, 0, 0, 0, 0], selectedValue: '' },],
 					   
 					   
 				formData: [
@@ -174,6 +177,7 @@
 			    }
 			  });
 			  this.pickers = updatedPickers; // 将更新后的pickers赋值给data中对应的属性名
+			  console.log(this.pickers)
 			},
 			
 			//点击保存按钮，弹出提示框
@@ -381,6 +385,7 @@
 }
 .cell {
   flex: 1;
+  
 }
 
 
@@ -424,30 +429,31 @@
 }
 .flex-container {
   display: flex;
-  padding: 0rpx;
+  flex-wrap: wrap;
   margin-bottom: 1rpx;
   border: 1px solid #000;
 }
+.spaced-text {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+ width: 550rpx; /* 设置最大宽度为100% */
+}
+
 .item {
   width: 80rpx;
   margin-right:20rpx;
   word-spacing: 15rpx;
   text-align: right;
+  border-right: 1px solid #000;
 }
-.spaced-text {
-  display: flex;
-  align-items: center;
-  margin-right:10rpx;
-  word-spacing: 21rpx; /* 调整空格大小 */
-  text-align: center;
-  border-left: 1px solid #000;
-}
+
 .row2 {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-bottom: -30rpx;
-  margin-top: -30rpx;
+  margin-top: -55rpx;
   padding-left: 150rpx;
   padding-right: 15rpx;
   font-weight: bold;

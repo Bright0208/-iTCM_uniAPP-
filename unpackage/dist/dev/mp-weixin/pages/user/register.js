@@ -280,13 +280,18 @@ var _default = {
                   icon: 'none',
                   duration: 1000
                 });
-                if (res.data.identity == 2) {
-                  uni.switchTab({
-                    url: '/pages/home/wangzhen'
-                  });
-                } else {
-                  console.log(res.data.identity);
-                }
+                uni.switchTab({
+                  url: '/pages/home/wangzhen'
+                });
+
+                //   if(res.data.identity==2){
+                // console.log(res.data.identity)
+                //    uni.switchTab({
+                //        url: '/pages/home/wangzhen'
+                //    });
+                //   }else{
+                //    console.log(res.data.identity)
+                //   }
               } else {
                 uni.showToast({
                   title: '注册失败',

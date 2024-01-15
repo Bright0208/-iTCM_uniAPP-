@@ -24,30 +24,28 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
+.container.data-v-068c5428 {
+  padding: 0px;
+}
+.image.data-v-068c5428 {
+  width: 100%;
+  text-align: center;
+  margin: 10px 0;
+}
 .img.data-v-068c5428 {
   width: 750rpx;
   height: 750rpx;
 }
-.container.data-v-068c5428 {
-  padding: 0px;
+.picker_container.data-v-068c5428 {
+  display: flex;
+  flex-direction: column;
+  max-width: 600px;
+  /* or your preferred max width */
+  margin: auto;
 }
-.form-group.data-v-068c5428 {
-  margin-bottom: 20px;
-}
-.group-title.data-v-068c5428 {
-  font-size: 18px;
-  color: #333;
-  margin-bottom: 10px;
-}
-.submit-btn.data-v-068c5428 {
-  text-align: center;
-  background-color: #1aad19;
-  color: #fff;
-  padding: 10px 0;
-  border-radius: 5px;
-}
-.form.data-v-068c5428 {
-  padding: 10px;
+.picker_picker.data-v-068c5428 {
+  width: 100%;
+  height: 60rpx;
 }
 .row.data-v-068c5428 {
   display: flex;
@@ -60,17 +58,6 @@
 }
 .remark_input.data-v-068c5428 {
   width: 630rpx;
-}
-.cell.data-v-068c5428 {
-  flex: 1;
-}
-.button.data-v-068c5428 {
-  background-color: #0099ff;
-  color: #fff;
-  text-align: center;
-  padding: 10px;
-  border-radius: 5px;
-  cursor: pointer;
 }
 .button-container.data-v-068c5428 {
   display: flex;
@@ -89,15 +76,6 @@
   background-color: #1aad19;
   color: #fff;
   border-radius: 5px;
-}
-.name.data-v-068c5428 {
-  font-weight: bold;
-}
-.value.data-v-068c5428 {
-  margin-top: 5rpx;
-}
-.container2.data-v-068c5428 {
-  padding: 0px;
 }
 .flex-container.data-v-068c5428 {
   display: flex;
@@ -126,9 +104,7 @@
   border-left: 1px solid #000;
 }
 .spaced-text2.data-v-068c5428 {
-  width: 470rpx;
-  word-spacing: 170rpx;
-  /* 调整空格大小 */
+  width: 570rpx;
   text-align: center;
   border-left: 1px solid #000;
 }

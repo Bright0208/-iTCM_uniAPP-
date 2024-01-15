@@ -181,7 +181,6 @@ var _default = {
       uni.login({
         provider: 'weixin',
         success: function success(res) {
-          console.log(res.code);
           if (res.code) {
             uni.request({
               url: 'http://121.41.80.48:9001/wxlogin/login',

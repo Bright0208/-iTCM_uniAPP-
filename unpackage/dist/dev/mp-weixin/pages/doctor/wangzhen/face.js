@@ -230,58 +230,72 @@ var _default = {
       // 在此处初始化和定义ranges数组
       ranges: [['红', '黄', '白', '青', '黑', '紫', '褐', '粉'], ['淡', '深', '紫', '灰', '红', '黄', '白', '青', '黑'], ['明', '暗']],
       pickers: [{
+        id: 0,
         name: "整体",
         index: [0, 0, 0],
         selectedValue: ''
       }, {
+        id: 1,
         name: "颌",
         index: [0, 0, 0],
         selectedValue: ''
       }, {
+        id: 2,
         name: "唇",
         index: [0, 0, 0],
         selectedValue: ''
       }, {
+        id: 3,
         name: "鼻根",
         index: [0, 0, 0],
         selectedValue: ''
       }, {
+        id: 4,
         name: "鼻中",
         index: [0, 0, 0],
         selectedValue: ''
       }, {
+        id: 5,
         name: "鼻两侧",
         index: [0, 0, 0],
         selectedValue: ''
       }, {
+        id: 6,
         name: "鼻头",
         index: [0, 0, 0],
         selectedValue: ''
       }, {
+        id: 7,
         name: "鼻翼",
         index: [0, 0, 0],
         selectedValue: ''
       }, {
+        id: 8,
         name: "眼部",
         index: [0, 0, 0],
         selectedValue: ''
       }, {
+        id: 9,
         name: "眉部",
         index: [0, 0, 0],
         selectedValue: ''
       }, {
+        id: 10,
         name: "颊",
         index: [0, 0, 0],
         selectedValue: ''
       }, {
+        id: 11,
         name: "上额",
         index: [0, 0, 0],
         selectedValue: ''
       }, {
+        id: 12,
         name: "前额",
         index: [0, 0, 0],
         selectedValue: ''
       }, {
+        id: 13,
         name: "颞",
         index: [0, 0, 0],
         selectedValue: ''

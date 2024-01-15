@@ -109,31 +109,30 @@
 }
 .flex-container.data-v-d55bf7bc {
   display: flex;
-  padding: 0rpx;
+  flex-wrap: wrap;
   margin-bottom: 1rpx;
   border: 1px solid #000;
+}
+.spaced-text.data-v-d55bf7bc {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 550rpx;
+  /* 设置最大宽度为100% */
 }
 .item.data-v-d55bf7bc {
   width: 80rpx;
   margin-right: 20rpx;
   word-spacing: 15rpx;
   text-align: right;
-}
-.spaced-text.data-v-d55bf7bc {
-  display: flex;
-  align-items: center;
-  margin-right: 10rpx;
-  word-spacing: 21rpx;
-  /* 调整空格大小 */
-  text-align: center;
-  border-left: 1px solid #000;
+  border-right: 1px solid #000;
 }
 .row2.data-v-d55bf7bc {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-bottom: -30rpx;
-  margin-top: -30rpx;
+  margin-top: -55rpx;
   padding-left: 150rpx;
   padding-right: 15rpx;
   font-weight: bold;

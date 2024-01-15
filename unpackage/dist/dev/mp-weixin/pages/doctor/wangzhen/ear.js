@@ -201,22 +201,27 @@ var _default = {
       // 在此处初始化和定义ranges数组
       ranges: [['红', '黄', '白', '青', '黑'], ['浅', '中', '深'], ['浅', '中', '深']],
       pickers: [{
+        id: 0,
         name: "肾",
         index: [0, 0, 0],
         selectedValue: ''
       }, {
+        id: 1,
         name: "肝胆",
         index: [0, 0, 0],
         selectedValue: ''
       }, {
+        id: 2,
         name: "脾胃",
         index: [0, 0, 0],
         selectedValue: ''
       }, {
+        id: 3,
         name: "肺",
         index: [0, 0, 0],
         selectedValue: ''
       }, {
+        id: 4,
         name: "心",
         index: [0, 0, 0],
         selectedValue: ''
@@ -258,6 +263,7 @@ var _default = {
         }
       });
       this.pickers = updatedPickers; // 将更新后的pickers赋值给data中对应的属性名
+      console.log(this.pickers);
     },
     //点击保存按钮，弹出提示框
     onSaveClick: function onSaveClick() {

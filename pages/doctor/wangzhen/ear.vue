@@ -18,9 +18,9 @@
 		  <view class="cell">症状程度</view>
 		</view>
 		
-		<view class="container">
-		<block v-for="(item, index) in pickers" :key="index">
-			<picker mode="multiSelector" @change="pick" :data-index="index" :value="item.index" :range="ranges">
+		<view class="picker_container" >
+		<block v-for="item in pickers" :key="item.id">
+			<picker class="picker_picker" mode="multiSelector" @change="pick" :data-index="item.id" :value="item.index" :range="ranges">
 			<view class="flex-container">
 				<view class="item">{{ item.name }}</view>
 				<view class="spaced-text">{{ item.selectedValue }}</view>
@@ -58,11 +58,11 @@
 				],
 				
 				pickers: [
-				   { name: "肾", index: [0, 0, 0], selectedValue: '' },
-				   { name: "肝胆", index: [0, 0, 0], selectedValue: '' },
-				   { name: "脾胃", index: [0, 0, 0], selectedValue: ''  },
-				   { name: "肺", index: [0, 0, 0], selectedValue: ''},
-				   { name: "心", index: [0, 0, 0], selectedValue: '' },
+				   {id:0, name: "肾", index: [0, 0, 0], selectedValue: '' },
+				   {id:1, name: "肝胆", index: [0, 0, 0], selectedValue: '' },
+				   {id:2, name: "脾胃", index: [0, 0, 0], selectedValue: ''  },
+				   {id:3, name: "肺", index: [0, 0, 0], selectedValue: ''},
+				   {id:4, name: "心", index: [0, 0, 0], selectedValue: '' },
 				    ],
 			
 				
@@ -103,7 +103,7 @@
 			  });
 			  
 			  this.pickers = updatedPickers; // 将更新后的pickers赋值给data中对应的属性名
-			  
+			  console.log(this.pickers)
 			},
 			//点击保存按钮，弹出提示框
 			onSaveClick() {
@@ -229,32 +229,27 @@
 </script>
 
 <style scoped lang='scss'>
+.container {
+    padding: 0px;
+}
+.image {
+  width: 100%;
+  text-align: center;
+  margin: 10px 0;
+}
 .img{
 	width: 750rpx;
 	height: 750rpx;
 }
-.container {
-    padding: 0px;
+.picker_container{
+	display: flex;
+	flex-direction: column;
+	max-width: 600px; /* or your preferred max width */
+	margin: auto;
 }
-.form-group {
-    margin-bottom: 20px;
-}
-.group-title {
-    font-size: 18px;
-    color: #333;
-    margin-bottom: 10px;
-}
-
-.submit-btn {
-    text-align: center;
-    background-color: #1aad19;
-    color: #fff;
-    padding: 10px 0;
-    border-radius: 5px;
-}
-
-.form {
-  padding: 10px;
+.picker_picker{
+	width: 100%;
+	height: 60rpx;
 }
 
 .row {
@@ -270,19 +265,7 @@
 .remark_input{
 	width: 630rpx;
 }
-.cell {
-  flex: 1;
-}
 
-
-.button {
-  background-color: #0099ff;
-  color: #fff;
-  text-align: center;
-  padding: 10px;
-  border-radius: 5px;
-  cursor: pointer;
-}
 .button-container {
   display: flex;
 }
@@ -302,17 +285,7 @@
   color: #fff;
   border-radius: 5px;
 }
-.name {
-  font-weight: bold;
-}
 
-.value {
-  margin-top: 5rpx;
-}
-
-.container2 {
-    padding: 0px;
-}
 .flex-container {
   display: flex;
   padding: 1rpx;
@@ -333,14 +306,13 @@
   text-align: right;
 }
 .spaced-text {
-	width: 670rpx;
+  width: 670rpx;
   word-spacing: 170rpx; /* 调整空格大小 */
   text-align: center;
   border-left: 1px solid #000;
 }
-.spaced-text2{
-  width: 470rpx;
-  word-spacing: 170rpx; /* 调整空格大小 */
+.spaced-text2 {
+  width: 570rpx;
   text-align: center;
   border-left: 1px solid #000;
 }

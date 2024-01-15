@@ -139,19 +139,26 @@ export default {
 		  },
 		  success: (res) => {
 			  if(res.statusCode >= 200 && res.statusCode < 300){
-			  uni.showToast({
-			    title: '注册成功，即将跳转',
-			    icon: 'none',
-			    duration: 1000
-			  });
-			  if(res.data.identity==2){
+			      uni.showToast({
+			        title: '注册成功，即将跳转',
+			        icon: 'none',
+			        duration: 1000
+			      });
+				  
 				  uni.switchTab({
-				      url: '/pages/home/wangzhen'
-				  });
-			  }else{
-				  console.log(res.data.identity)
-			  }
-			  
+				         url: '/pages/home/wangzhen'
+				     });
+				  
+				  
+			    //   if(res.data.identity==2){
+					  // console.log(res.data.identity)
+				   //    uni.switchTab({
+				   //        url: '/pages/home/wangzhen'
+				   //    });
+			    //   }else{
+				   //    console.log(res.data.identity)
+			    //   }
+			      
 			}else{
 				uni.showToast({
 				  title: '注册失败',

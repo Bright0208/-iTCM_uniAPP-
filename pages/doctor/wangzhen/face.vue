@@ -12,8 +12,8 @@
 		</view>
 		
 		<view class="container">
-		<block v-for="(item, index) in pickers" :key="index">
-			<picker mode="multiSelector" @change="pick" :data-index="index" :value="item.index" :range="ranges">
+		<block v-for="item in pickers" :key="item.id">
+			<picker mode="multiSelector" @change="pick" :data-index="item.id" :value="item.index" :range="ranges">
 			<view class="flex-container">
 				<view class="item">{{ item.name }}</view>
 				<view class="spaced-text">{{ item.selectedValue }}</view>
@@ -99,20 +99,20 @@ export default {
 			],
 			
 			pickers: [
-			   { name: "整体", index: [0, 0, 0], selectedValue: '' },
-			   { name: "颌", index: [0, 0, 0], selectedValue: '' },
-			   { name: "唇", index: [0, 0, 0], selectedValue: ''  },
-			   { name: "鼻根", index: [0, 0, 0], selectedValue: ''},
-			   { name: "鼻中", index: [0, 0, 0], selectedValue: '' },
-			   { name: "鼻两侧", index: [0, 0, 0], selectedValue: ''} ,
-			   { name: "鼻头", index: [0, 0, 0], selectedValue: '' },
-			   { name: "鼻翼", index: [0, 0, 0], selectedValue: '' },
-			   { name: "眼部", index: [0, 0, 0], selectedValue: '' },
-			   { name: "眉部", index: [0, 0, 0], selectedValue: '' },
-			   { name: "颊", index: [0, 0, 0], selectedValue: '' },
-			   { name: "上额", index: [0, 0, 0], selectedValue: '' },
-			   { name: "前额", index: [0, 0, 0], selectedValue: '' },
-			   { name: "颞", index: [0, 0, 0], selectedValue: ''},
+			   {id:0, name: "整体", index: [0, 0, 0], selectedValue: '' },
+			   {id:1, name: "颌", index: [0, 0, 0], selectedValue: '' },
+			   {id:2, name: "唇", index: [0, 0, 0], selectedValue: ''  },
+			   {id:3, name: "鼻根", index: [0, 0, 0], selectedValue: ''},
+			   {id:4, name: "鼻中", index: [0, 0, 0], selectedValue: '' },
+			   {id:5, name: "鼻两侧", index: [0, 0, 0], selectedValue: ''} ,
+			   {id:6, name: "鼻头", index: [0, 0, 0], selectedValue: '' },
+			   {id:7, name: "鼻翼", index: [0, 0, 0], selectedValue: '' },
+			   {id:8, name: "眼部", index: [0, 0, 0], selectedValue: '' },
+			   {id:9, name: "眉部", index: [0, 0, 0], selectedValue: '' },
+			   {id:10, name: "颊", index: [0, 0, 0], selectedValue: '' },
+			   {id:11, name: "上额", index: [0, 0, 0], selectedValue: '' },
+			   {id:12, name: "前额", index: [0, 0, 0], selectedValue: '' },
+			   {id:13, name: "颞", index: [0, 0, 0], selectedValue: ''},
 			    ],
 
         }
