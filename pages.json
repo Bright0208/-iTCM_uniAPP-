@@ -5,17 +5,11 @@
 	
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
-			"path" : "pages/test/test",
+			"path" : "pages/user/login",
 			"style" : 
 			{
 				"navigationBarTitleText" : "邑大iTCM",
 				"enablePullDownRefresh" : false
-			}
-		},
-		{
-			"path": "pages/index/index",
-			"style": {
-				"navigationBarTitleText": "智能中医"
 			}
 		},
 		{
@@ -42,14 +36,7 @@
 				"enablePullDownRefresh" : false
 			}
 		},
-		{
-			"path" : "pages/user/login",
-			"style" : 
-			{
-				"navigationBarTitleText" : "登录",
-				"enablePullDownRefresh" : false
-			}
-		},
+
 		{
 			"path" : "pages/home/wenzhen",
 			"style" : 
@@ -134,7 +121,7 @@
 			"path" : "pages/doctor/PersonalInfo",
 			"style" : 
 			{
-				"navigationBarTitleText" : "",
+				"navigationBarTitleText" : "医生个人信息",
 				"enablePullDownRefresh" : false
 			}
 		},
@@ -142,7 +129,7 @@
 			"path" : "pages/doctor/wangzhen_revise/ear",
 			"style" : 
 			{
-				"navigationBarTitleText" : "",
+				"navigationBarTitleText" : "耳诊历史数据",
 				"enablePullDownRefresh" : false
 			}
 		},
@@ -150,7 +137,7 @@
 			"path" : "pages/doctor/wangzhen_revise/face",
 			"style" : 
 			{
-				"navigationBarTitleText" : "",
+				"navigationBarTitleText" : "面诊历史数据",
 				"enablePullDownRefresh" : false
 			}
 		},
@@ -158,7 +145,7 @@
 			"path" : "pages/doctor/wangzhen_revise/tongue",
 			"style" : 
 			{
-				"navigationBarTitleText" : "",
+				"navigationBarTitleText" : "舌诊历史数据",
 				"enablePullDownRefresh" : false
 			}
 		}

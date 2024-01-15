@@ -38,10 +38,9 @@ export default {
     uni.login({
       provider: 'weixin',
       success: (res) => {
-		  console.log(res.code);
         if (res.code) {
           uni.request({
-            url: 'http://192.168.137.1:9001/wxlogin/login',
+            url: 'http://121.41.80.48:9001/wxlogin/login',
             method: 'POST',
             data: {
               code: res.code
@@ -50,9 +49,10 @@ export default {
 			  const notRegister = response.data.notRegister;
 			  const token = response.data.token;
 			  const identity = response.data.identity;
-			  uni.setStorageSync('token', token);
+			  console.log(identity);
+			  uni.setStorageSync('token', token); //保存token
 			  if (notRegister) {
-			          // 如果notRegister等于1，显示提示信息，并在2秒后跳转到注册页面
+			          // 如果notRegister等于1，显示提示信息，并在3秒后跳转到注册页面
 			          uni.showToast({
 			              title: '    首次登录，请先完善信息    ',
 			              icon: 'none', // 不显示图标
@@ -66,20 +66,21 @@ export default {
 			                  }, 2000); // 2秒后执行页面跳转，确保提示信息已经展示完毕
 			              }
 			          });
-			      } else if(identity==2) {
-					  uni.setStorageSync('identify','user')
-						uni.redirectTo({
+			      } else if (identity==2) {
+						uni.setStorageSync('identify','user')
+						uni.switchTab({
 						    url: '/pages/home/wangzhen'
 						});
 			          // 用户已注册，执行其他逻辑
-			      }else {
-					  uni.setStorageSync('identify','doctor')
-					  uni.redirectTo({
-					      url: '/pages/doctor/wangzhen/wangzhen'
-					  });
+			      }else{
+					 uni.setStorageSync('identify','doctor')
+					 uni.switchTab({
+					     url: '/pages/doctor/wangzhen/wangzhen'
+					 }); 
+					  console.log(token);
 				  }
-              // uni.setStorageSync('token', token);
-              // 其他逻辑处理
+				  
+              
             },
             fail: (err) => {
               console.log('登录失败：' + err.errMsg);

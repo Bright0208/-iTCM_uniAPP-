@@ -1,11 +1,9 @@
 {
   "pages": [
-    "pages/test/test",
-    "pages/index/index",
+    "pages/user/login",
     "pages/user/PersonalInfo",
     "pages/user/register",
     "pages/home/wangzhen",
-    "pages/user/login",
     "pages/home/wenzhen",
     "pages/home/wangzhen/face",
     "pages/home/wangzhen/tongue",
