@@ -58,4 +58,27 @@
   padding: 10px 0; /* 上下间距，左右不设置 */
   margin-top: 20px; /* 如有需要，可设置间距 */
 }
+.agreements {
+  text-align: center;
+  margin-top: 20px; /* 或更多，根据你页面的需求 */
+  padding-bottom: 20px; /* 在这个元素的底部增加内边距以避免被tabbar遮挡 */
+}
+.agreement-link {
+  color: #1E90FF; /* 或你应用的主题色 */
+  margin: 0 5px;
+  /* 如果希望实现点击时有视觉反馈，可以添加如下样式变量 */
+  /* 注意这可能需要根据实际的框架或平台进行调整 */
+  --active-color: #555;
+  --active-opacity: 0.7;
+}
+.checkbox-container {
+  display: flex;
+  align-items: center;
+}
+.checkbox-label {
+  margin-left: 8px;
+}
+
+
+
 

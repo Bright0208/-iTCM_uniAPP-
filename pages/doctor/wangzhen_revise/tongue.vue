@@ -504,7 +504,7 @@
 .flex-container {
   display: flex;
   flex-wrap: wrap;
-  margin-bottom: 1rpx;
+  margin-bottom: 1rpx;	
   border: 1px solid #000;
 }
 .item {

@@ -183,6 +183,16 @@ exports.default = void 0;
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 var defaultAvatarUrl = 'https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0';
 var token = "";
@@ -201,7 +211,8 @@ var _default = {
         idCard: ''
       },
       phoneValid: true,
-      idCardValid: true
+      idCardValid: true,
+      isAgreementChecked: false // 初始状态未勾选
     };
   },
   onLoad: function onLoad() {
@@ -250,14 +261,19 @@ var _default = {
     validateInfo: function validateInfo() {
       if (this.userInfo.phone != "" && this.userInfo.idCard != "") {
         // 可以在这里做提交前的最终验证，以确保所有的信息都是有效的
-        if (this.phoneValid && this.idCardValid) {
+        if (this.isAgreementChecked == false) {
+          uni.showToast({
+            title: '请勾选协议',
+            icon: 'success',
+            duration: 2000
+          });
+        } else if (this.phoneValid && this.idCardValid) {
           // 提交信息
-
           console.log('提交的用户信息：', this.userInfo);
           uni.showToast({
             title: '验证通过，信息已提交',
-            icon: 'success',
-            duration: 2000
+            icon: 'none',
+            duration: 3000
           });
           uni.request({
             url: 'http://121.41.80.48:9001/user/register',
@@ -283,15 +299,6 @@ var _default = {
                 uni.switchTab({
                   url: '/pages/home/wangzhen'
                 });
-
-                //   if(res.data.identity==2){
-                // console.log(res.data.identity)
-                //    uni.switchTab({
-                //        url: '/pages/home/wangzhen'
-                //    });
-                //   }else{
-                //    console.log(res.data.identity)
-                //   }
               } else {
                 uni.showToast({
                   title: '注册失败',
@@ -316,6 +323,22 @@ var _default = {
           title: '请提交完整信息',
           icon: 'none',
           duration: 2000
+        });
+      }
+    },
+    toggleAgreementCheck: function toggleAgreementCheck() {
+      this.isAgreementChecked = !this.isAgreementChecked;
+    },
+    openAgreement: function openAgreement(type) {
+      if (type === 'user') {
+        // 打开用户服务协议页面或视图
+        uni.navigateTo({
+          url: "/pages/user/agreement/user"
+        });
+      } else if (type === 'privacy') {
+        // 打开隐私政策页面或视图
+        uni.navigateTo({
+          url: "/pages/user/agreement/privacy"
         });
       }
     }

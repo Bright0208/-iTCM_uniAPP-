@@ -148,6 +148,22 @@
 				"navigationBarTitleText" : "舌诊历史数据",
 				"enablePullDownRefresh" : false
 			}
+		},
+		{
+			"path" : "pages/user/agreement/user",
+			"style" : 
+			{
+				"navigationBarTitleText" : "",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/user/agreement/privacy",
+			"style" : 
+			{
+				"navigationBarTitleText" : "",
+				"enablePullDownRefresh" : false
+			}
 		}
 		
 	],

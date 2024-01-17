@@ -36,6 +36,16 @@
 	<view class="info-notice">
 	  除头像、昵称、性别、年龄之外，其余信息提交后不可修改，请认真填写
 	</view>
+    <!-- 用户服务协议和隐私政策链接 -->
+    <view class="agreements">
+      <view class="checkbox-container" >
+        <checkbox v-model="isAgreementChecked" class="agreement-checkbox" @click="toggleAgreementCheck" ></checkbox>
+        <text class="checkbox-label" >我已阅读并同意</text>
+      </view>
+      <text class="agreement-link" @click="openAgreement('user')">《用户服务协议》</text>
+      <text>和</text>
+      <text class="agreement-link" @click="openAgreement('privacy')">《隐私政策》</text>
+    </view>	
     <button class="submit-btn"  @click="validateInfo"  >提交</button>
   </view>
 </template>
@@ -57,7 +67,8 @@ export default {
         idCard: ''
       },
       phoneValid: true,
-      idCardValid: true
+      idCardValid: true,
+	  isAgreementChecked: false, // 初始状态未勾选
     };
   },
   
@@ -115,14 +126,19 @@ export default {
     validateInfo() {
 	if(this.userInfo.phone!="" && this.userInfo.idCard!="" ){
       // 可以在这里做提交前的最终验证，以确保所有的信息都是有效的
-      if (this.phoneValid && this.idCardValid) {
+	  if(this.isAgreementChecked==false){
+		uni.showToast({
+		  title: '请勾选协议',
+		  icon: 'success',
+		  duration: 2000
+		});  
+	  }else if (this.phoneValid && this.idCardValid) {
         // 提交信息
-		
         console.log('提交的用户信息：', this.userInfo);
         uni.showToast({
           title: '验证通过，信息已提交',
-          icon: 'success',
-          duration: 2000
+          icon: 'none',
+          duration: 3000
         });
 		uni.request({
 		  url: 'http://121.41.80.48:9001/user/register',
@@ -148,17 +164,6 @@ export default {
 				  uni.switchTab({
 				         url: '/pages/home/wangzhen'
 				     });
-				  
-				  
-			    //   if(res.data.identity==2){
-					  // console.log(res.data.identity)
-				   //    uni.switchTab({
-				   //        url: '/pages/home/wangzhen'
-				   //    });
-			    //   }else{
-				   //    console.log(res.data.identity)
-			    //   }
-			      
 			}else{
 				uni.showToast({
 				  title: '注册失败',
@@ -187,7 +192,22 @@ export default {
 		}); 
 	 } 
     },
-		
+	toggleAgreementCheck() {
+	  this.isAgreementChecked = !this.isAgreementChecked;
+	},	
+    openAgreement(type) {
+      if (type === 'user') {
+        // 打开用户服务协议页面或视图
+		uni.navigateTo({
+			url:"/pages/user/agreement/user"
+		})
+      } else if (type === 'privacy') {
+        // 打开隐私政策页面或视图
+		uni.navigateTo({
+			url:"/pages/user/agreement/privacy"
+		})
+      }
+    },	
   }
 };
 </script>
@@ -253,4 +273,29 @@ export default {
   padding: 10px 0; /* 上下间距，左右不设置 */
   margin-top: 20px; /* 如有需要，可设置间距 */
 }
+.agreements {
+  text-align: center;
+  margin-top: 20px; /* 或更多，根据你页面的需求 */
+  padding-bottom: 20px; /* 在这个元素的底部增加内边距以避免被tabbar遮挡 */
+}
+
+.agreement-link {
+  color: #1E90FF; /* 或你应用的主题色 */
+  margin: 0 5px;
+  /* 如果希望实现点击时有视觉反馈，可以添加如下样式变量 */
+  /* 注意这可能需要根据实际的框架或平台进行调整 */
+  --active-color: #555;
+  --active-opacity: 0.7;
+}
+.checkbox-container {
+  display: flex;
+  align-items: center;
+}
+
+.checkbox-label {
+  margin-left: 8px;
+}
+
+
+
 </style>
