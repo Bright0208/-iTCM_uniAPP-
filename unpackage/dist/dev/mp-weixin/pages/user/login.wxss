@@ -49,10 +49,18 @@
 }
 
 /* 应用于<button>的特定样式 */
-.login-btn {
+.wxlogin-btn {
   background: #07C160; /* 微信绿 */
   border: none;
   outline: none;
+}
+
+/* 应用于<navigator>的特定样式 */
+.login-btn {
+  background: #ff5500; /* iOS 蓝 */
+  border: 1px solid #ff5500; /* 有边框 */
+  box-sizing: border-box; /* 确保边框宽度计算在内 */
+  text-decoration: none; /* 移除超链接的下划线 */
 }
 
 /* 应用于<navigator>的特定样式 */

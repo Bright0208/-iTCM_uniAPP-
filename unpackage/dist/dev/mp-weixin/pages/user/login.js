@@ -1,26 +1,5 @@
 (global["webpackJsonp"] = global["webpackJsonp"] || []).push([["pages/user/login"],{
 
-/***/ 159:
-/*!******************************************************************************************!*\
-  !*** D:/16.HBuilder X/2.HBuilderProjects/邑大iTCM/main.js?{"page":"pages%2Fuser%2Flogin"} ***!
-  \******************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(wx, createPage) {
-
-var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
-__webpack_require__(/*! uni-pages */ 26);
-var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 25));
-var _login = _interopRequireDefault(__webpack_require__(/*! ./pages/user/login.vue */ 160));
-// @ts-ignore
-wx.__webpack_require_UNI_MP_PLUGIN__ = __webpack_require__;
-createPage(_login.default);
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/wx.js */ 1)["default"], __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["createPage"]))
-
-/***/ }),
-
 /***/ 160:
 /*!***********************************************************************!*\
   !*** D:/16.HBuilder X/2.HBuilderProjects/邑大iTCM/pages/user/login.vue ***!
@@ -153,6 +132,7 @@ exports.default = void 0;
 //
 //
 //
+//
 var _default = {
   methods: {
     onWechatLogin: function onWechatLogin() {
@@ -272,7 +252,28 @@ __webpack_require__.r(__webpack_exports__);
     if(false) { var cssReload; }
   
 
+/***/ }),
+
+/***/ 315:
+/*!******************************************************************************************!*\
+  !*** D:/16.HBuilder X/2.HBuilderProjects/邑大iTCM/main.js?{"page":"pages%2Fuser%2Flogin"} ***!
+  \******************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(wx, createPage) {
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
+__webpack_require__(/*! uni-pages */ 26);
+var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 25));
+var _login = _interopRequireDefault(__webpack_require__(/*! ./pages/user/login.vue */ 160));
+// @ts-ignore
+wx.__webpack_require_UNI_MP_PLUGIN__ = __webpack_require__;
+createPage(_login.default);
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/wx.js */ 1)["default"], __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["createPage"]))
+
 /***/ })
 
-},[[159,"common/runtime","common/vendor"]]]);
+},[[315,"common/runtime","common/vendor"]]]);
 //# sourceMappingURL=../../../.sourcemap/mp-weixin/pages/user/login.js.map

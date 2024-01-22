@@ -19,7 +19,8 @@
     "pages/doctor/wangzhen_revise/face",
     "pages/doctor/wangzhen_revise/tongue",
     "pages/user/agreement/user",
-    "pages/user/agreement/privacy"
+    "pages/user/agreement/privacy",
+    "pages/user/account_login"
   ],
   "subPackages": [],
   "window": {
