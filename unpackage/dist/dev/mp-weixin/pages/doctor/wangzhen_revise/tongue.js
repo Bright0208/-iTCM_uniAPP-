@@ -335,7 +335,7 @@ var _default = {
       var _this = this;
       // 发送HTTP请求到后端接口
       uni.request({
-        url: 'http://121.41.80.48:9003/shezhen/getDone',
+        url: 'http://localhost:9003/shezhen/getDone',
         method: 'GET',
         header: {
           "Content-Type": "application/json",
@@ -348,7 +348,7 @@ var _default = {
         success: function success(res) {
           if (res.statusCode >= 200 && res.statusCode < 300) {
             // 请求成功，处理返回的数据
-            _this.patientIdcard = res.data.Idcard;
+            _this.patientIdcard = res.data.user[0].mobile;
             _this.imgUrl = res.data.user[0].imgUrl;
             _this.imageID = res.data.user[0].imageID;
             console.log(res.data.user[0]);
@@ -385,6 +385,7 @@ var _default = {
               icon: 'none',
               duration: 4000
             });
+            _this.offset--;
           }
         },
         fail: function fail(error) {

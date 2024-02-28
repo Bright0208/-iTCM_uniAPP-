@@ -146,7 +146,8 @@ var _default = {
     };
   },
   created: function created() {
-    this.currentIndex = this.selectedIndex;
+    // this.currentIndex = this.selectedIndex;
+
     var _this = this;
     if (uni.getStorageSync('identify') == 'user') {
       //用户

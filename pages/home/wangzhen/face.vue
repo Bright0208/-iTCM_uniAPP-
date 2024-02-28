@@ -43,19 +43,27 @@ export default {
 		  const token = uni.getStorageSync('token');
           // 上传图片
           uni.uploadFile({
-            url: 'http://121.41.80.48:9003/user-face/upload', // 您的后端接口地址
+            url: 'http://localhost:9003/user-face/upload', // 您的后端接口地址
             filePath: tempFilePaths[0],
             name: 'file', // 这里根据后端的需要进行修改
 			formData: {
 			       'token': token // 将token包含在formData中
 			},
             success: (uploadFileRes) => {
-				console.log(uploadFileRes); // 输出上传结果
-				uni.showToast({
-				  title: '上传成功',
-				  duration: 2000
-				});
-				this.uploadurl = JSON.parse(uploadFileRes.data).url; 
+				if(uploadFileRes.statusCode >= 200 && uploadFileRes.statusCode < 300){
+					uni.showToast({
+					  title: '上传成功',
+					  duration: 2000
+					});
+					this.uploadurl = JSON.parse(uploadFileRes.data).url; 
+				}else{
+					uni.showToast({
+					  title: '上传失败',
+					  icon: 'none',
+					  duration: 2000
+					});
+				}
+				
             },
             fail: (uploadFileErr) => {
               console.log(uploadFileErr); // 输出错误信息

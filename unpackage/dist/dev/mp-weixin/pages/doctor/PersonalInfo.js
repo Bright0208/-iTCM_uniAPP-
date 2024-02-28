@@ -146,7 +146,8 @@ var _default = {
     };
   },
   created: function created() {
-    this.currentIndex = this.selectedIndex;
+    // this.currentIndex = this.selectedIndex;
+
     var _this = this;
     if (uni.getStorageSync('identify') == 'user') {
       //用户
@@ -426,6 +427,10 @@ var _tabBar = _interopRequireDefault(__webpack_require__(/*! @/pages/tabBar/tabB
 //
 //
 //
+//
+//
+//
+//
 var _default = {
   components: {
     tabBar: _tabBar.default //引用对应的组件
@@ -438,7 +443,8 @@ var _default = {
     return {
       // 页面的数据
       avatarUrl: "",
-      nickname: ''
+      nickname: '',
+      phone: ''
     };
   },
   onLoad: function onLoad() {
@@ -474,7 +480,7 @@ var _default = {
     getAvatarAndNickname: function getAvatarAndNickname() {
       var _this = this;
       uni.request({
-        url: 'http://121.41.80.48:9001/user/getAvatarAndNickname',
+        url: 'http://localhost:9001/user/getAvatarAndNickname',
         method: 'GET',
         data: {
           token: uni.getStorageSync('token')
@@ -482,11 +488,20 @@ var _default = {
       }).then(function (response) {
         console.log(response.data.user);
         // 请求成功的处理
-        _this.avatarUrl = response.data.user.avatarUrl;
-        _this.nickname = response.data.user.nickName;
+        // this.avatarUrl = response.data.user.avatarUrl;
+        // this.nickname = response.data.user.nickName;
+        _this.phone = response.data.user.mobile;
       }).catch(function (error) {
         // 请求失败的处理
         console.error(error);
+      });
+    },
+    //退出登录
+    logout: function logout() {
+      uni.removeStorageSync('token'); // 删除所有存储在 Storage 中的内容
+      uni.removeStorageSync('identify'); // 删除所有存储在 Storage 中的内容
+      uni.reLaunch({
+        url: '/pages/user/login' // 返回到登录界面
       });
     }
   }

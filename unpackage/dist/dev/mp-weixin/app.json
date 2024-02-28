@@ -20,7 +20,8 @@
     "pages/doctor/wangzhen_revise/tongue",
     "pages/user/agreement/user",
     "pages/user/agreement/privacy",
-    "pages/user/account_login"
+    "pages/user/account_login",
+    "pages/user/account_register"
   ],
   "subPackages": [],
   "window": {

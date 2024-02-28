@@ -3,10 +3,10 @@
     <!-- 头部区域 -->
     <view class="header-section">
       <!-- 头像 -->
-      <image class="user-avatar" :src="avatarUrl" ></image>
+      <!-- <image class="user-avatar" :src="avatarUrl" ></image> -->
       <!-- 昵称和箭头 -->
       <view class="nickname-and-arrow" @click="navigateToEditProfile">
-        <text class="nickname-text">{{ nickname }}</text>
+        <text class="nickname-text">{{ mobile }}</text>
         <text class="arrow-icon">></text>
       </view>
     </view>
@@ -37,6 +37,11 @@
         <text>{{ wenzhenResult }}</text>
       </view>
     </view>
+	
+	 <view class="logout_view" >
+	    <button @click="logout">退出登录</button>
+	 </view>
+	 
 	<tabBar ref="customTabBar" selectedIndex = 2 ></tabBar>
   </view>
 </template>
@@ -49,12 +54,14 @@ export default {
   onShow() {
     // 更新tabBar的选中索引
     this.$refs.customTabBar.updateActiveTabIndex();
+	this.getPersonalResult();
   },
   data() {
     return {
       // 页面的数据
 	  avatarUrl:"",
 	  nickname:'',
+	  mobile:'',
 	  wenzhenResult:"",
 	  earDiagnosticResultsRemarks:"",
 	  faceDiagnosticResultsRemarks:"",
@@ -64,10 +71,9 @@ export default {
   
   onLoad() {
 	  this.getAvatarAndNickname();
-	  this.getPersonalResult();
 
   },
-  
+
   methods: {
     // 页面的方法
 	navigateToEditProfile() {
@@ -81,7 +87,7 @@ export default {
 	//获取个人头像和昵称
 	getAvatarAndNickname(){
 		uni.request({
-		    url: 'http://121.41.80.48:9001/user/getAvatarAndNickname',
+		    url: 'http://localhost:9001/user/getAvatarAndNickname',
 		    method: 'GET',
 		    data: {
 		        token: uni.getStorageSync('token')
@@ -91,7 +97,9 @@ export default {
 			console.log(response.data.user);
 		    // 请求成功的处理
 			this.avatarUrl = response.data.user.avatarUrl;
-			this.nickname = response.data.user.nickName;
+			this.nickname = response.data.user.nickname;
+			this.mobile = response.data.user.mobile;
+			
 		})
 		.catch((error) => {
 		    // 请求失败的处理
@@ -102,7 +110,7 @@ export default {
 	//获取诊断结果
 	getPersonalResult(){
 		uni.request({
-		    url: 'http://121.41.80.48:9004/personalResults/get',
+		    url: 'http://localhost:9004/personalResults/get',
 		    method: 'GET',
 		    data: {
 		        token: uni.getStorageSync('token')
@@ -120,7 +128,15 @@ export default {
 		    // 请求失败的处理
 		    console.error(error);
 		});
-	},	  
+	},	 
+	 //退出登录
+	logout() {
+	      uni.removeStorageSync('token'); // 删除所有存储在 Storage 中的内容
+		  uni.removeStorageSync('identify'); // 删除所有存储在 Storage 中的内容
+	      uni.reLaunch({
+	        url: '/pages/user/login' // 返回到登录界面
+	      });
+	    }, 
 		  
   }
 };

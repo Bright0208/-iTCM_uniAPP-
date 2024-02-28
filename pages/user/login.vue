@@ -5,8 +5,8 @@
     </view>
 	<view class="button-container">
       <button class="button-common wxlogin-btn" @click="onWechatLogin">微信登录</button>
-	  <navigator url="/pages/user/register" class="button-common login-btn">账号密码登录</navigator>
-      <navigator url="/pages/user/register" class="button-common register-btn">注册账号</navigator>
+	  <navigator url="/pages/user/account_login" class="button-common login-btn">账号密码登录</navigator>
+      <navigator url="/pages/user/account_register" class="button-common register-btn">注册账号</navigator>
 	</view>
   </view>
 </template>
@@ -41,7 +41,7 @@ export default {
       success: (res) => {
         if (res.code) {
           uni.request({
-            url: 'http://121.41.80.48:9001/wxlogin/login',
+            url: 'http://localhost:9001/wxlogin/login',
             method: 'POST',
             data: {
               code: res.code
@@ -50,7 +50,7 @@ export default {
 			  const notRegister = response.data.notRegister;
 			  const token = response.data.token;
 			  const identity = response.data.identity;
-			  console.log(identity);
+			  
 			  uni.setStorageSync('token', token); //保存token
 			  if (notRegister) {
 			          // 如果notRegister等于1，显示提示信息，并在3秒后跳转到注册页面

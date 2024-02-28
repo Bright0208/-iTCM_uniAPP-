@@ -28,11 +28,31 @@
       <input class="info-value" type="number" placeholder="请输入手机号" v-model="userInfo.phone" @blur="validatePhone" />
       <text v-show="!phoneValid" class="error-msg">格式有误</text>
     </view>
-    <view class="info-item">
+<!-- 	<view class="info-item">
+	  <text class="info-label">邮箱：</text>
+	  <input class="info-value" type="number" placeholder="请输入邮箱号" v-model="userInfo.email" @blur="validateEmail" />
+	  <text v-show="!emailValid" class="error-msg">格式有误</text>
+	</view> -->
+<!--    <view class="info-item">
       <text class="info-label">身份证：</text>
       <input class="info-value" type="text" placeholder="请输入身份证号" v-model="userInfo.idCard" @blur="validateIdCard" />
       <text v-show="!idCardValid" class="error-msg">格式有误</text>
-    </view>
+    </view> -->
+	<view class="info-item">
+	  <text class="info-label">密码：</text>
+	  <input class="info-value" type="password" placeholder="密码" @blur="checkPassword" v-model="userInfo.password"/>
+	  <text v-if="passwordError" class="error-msg">{{ passwordError }}</text>
+	</view>
+	<view class="info-item">
+	  <text class="info-label">确认密码：</text>
+      <input class="info-value" type="password" placeholder="确认密码" @blur="checkConfirmPassword" v-model="confirmPassword"/>
+      <text v-if="confirmPasswordError" class="error-msg">{{ confirmPasswordError }}</text>
+	</view>
+	<view class="info-item">
+	  <text class="info-label">验证码：</text>
+	  <input class="info-value" type="text" placeholder="验证码"  v-model="captcha"/>
+	  <button class="info-button" @click="startCountDown" :disabled="disableButton">{{ disableButton ? countDown + 's 后重新获取' : '获取验证码' }}</button>
+	</view>
 	<view class="info-notice">
 	  除头像、昵称、性别、年龄之外，其余信息提交后不可修改，请认真填写
 	</view>
@@ -64,10 +84,19 @@ export default {
         genderIndex: 0,//初始化默认选中第一项，即‘男’
 		age:'',
         phone: '',
-        idCard: ''
+		// email:'',
+        // idCard: ''
+		password:'',
       },
       phoneValid: true,
+	  emailValid: true,
       idCardValid: true,
+	  confirmPassword: '',
+	  passwordError: '',
+	  confirmPasswordError: '',
+	  captcha: '',//验证码
+	  countDown: 60, // 倒计时初始值，单位为秒
+      disableButton: false, // 控制按钮是否可点击
 	  isAgreementChecked: false, // 初始状态未勾选
     };
   },
@@ -109,22 +138,43 @@ export default {
     onInputNickname(event) {
       this.userInfo.nickname = event.target.value;
     },
-	
+	//通过blur保存昵称
 	handleBlur(event){
 	  this.userInfo.nickname=event.target.value;
 	},
-	
+	//修改性别
     onGenderChange(event) {
       this.userInfo.genderIndex = event.target.value;
     },
+	//验证手机格式
     validatePhone() {
       this.phoneValid = /^1\d{10}$/.test(this.userInfo.phone);
     },
+	//验证邮箱格式
+	validateEmail() {
+	  this.emailValid = /^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$/.test(this.userInfo.email);
+	},
+	//验证身份证格式
     validateIdCard() {
       this.idCardValid = /^[1-9]\d{5}[1-9]\d{3}((0[1-9])|(1[0-2]))(([0-2][1-9])|10|20|30|31)\d{3}([0-9]|X)$/.test(this.userInfo.idCard);
     },
+	// 密码验证
+	checkPassword() {
+	  this.passwordError = this.userInfo.password ? '' : '密码不能为空';
+	},
+	// 确认密码验证
+	checkConfirmPassword() {
+	  this.confirmPasswordError = this.confirmPassword === this.userInfo.password ? '' : '两次输入的密码不一致';
+	},
+	// 获取验证码
+	getCaptcha() {
+	  // 模拟发送验证码操作
+	  console.log('验证码已发送');
+	},
+	
+	//验证信息并提交到后台
     validateInfo() {
-	if(this.userInfo.phone!="" && this.userInfo.idCard!="" ){
+	if(this.userInfo.phone!="" && this.userInfo.name!="" ){
       // 可以在这里做提交前的最终验证，以确保所有的信息都是有效的
 	  if(this.isAgreementChecked==false){
 		uni.showToast({
@@ -132,7 +182,7 @@ export default {
 		  icon: 'success',
 		  duration: 2000
 		});  
-	  }else if (this.phoneValid && this.idCardValid) {
+	  }else if (this.phoneValid) {
         // 提交信息
         console.log('提交的用户信息：', this.userInfo);
         uni.showToast({
@@ -141,29 +191,43 @@ export default {
           duration: 3000
         });
 		uni.request({
-		  url: 'http://121.41.80.48:9001/user/register',
+		  url: 'http://localhost:9001/user/register',
 		  method: 'POST',
 		  data: {
-			token: this.token,
+			token: this.token, //里面有 openid
 			avatarUrl: this.userInfo.avatarUrl,
 			nickname: this.userInfo.nickname,
 			name: this.userInfo.name,
 			genderIndex: this.userInfo.genderIndex,//0男1女
 			age: this.userInfo.age,
 			phone: this.userInfo.phone,
-			idCard:this.userInfo.idCard
+			// email: this.userInfo.email,
+			// idCard:this.userInfo.idCard
+			password:this.userInfo.password,
+			captcha:this.captcha,
 		  },
 		  success: (res) => {
+			  const token = res.data.token;
+			  const identity = res.data.identity;
+			  uni.setStorageSync('token', token); //保存token
 			  if(res.statusCode >= 200 && res.statusCode < 300){
 			      uni.showToast({
 			        title: '注册成功，即将跳转',
 			        icon: 'none',
 			        duration: 1000
 			      });
-				  
-				  uni.switchTab({
-				         url: '/pages/home/wangzhen'
-				     });
+				 if (identity==2) {
+				 		uni.setStorageSync('identify','user')
+				 		uni.switchTab({
+				 		    url: '/pages/home/wangzhen'
+				 		});
+				     // 用户已注册，执行其他逻辑
+				 }else{
+				 	   uni.setStorageSync('identify','doctor')
+				 	   uni.switchTab({
+				 	   	    url: '/pages/doctor/wangzhen/wangzhen'
+				 	   }); 
+				 }
 			}else{
 				uni.showToast({
 				  title: '注册失败',
@@ -192,9 +256,40 @@ export default {
 		}); 
 	 } 
     },
+	//按钮倒计时
+	startCountDown() {
+	    this.disableButton = true; // 设置按钮不可点击
+	
+	    let timer = setInterval(() => {
+	      if (this.countDown > 0) {
+	        this.countDown--;
+	      } else {
+	        clearInterval(timer);
+	        this.countDown = 60; // 重置倒计时
+	        this.disableButton = false; // 恢复按钮可点击
+	      }
+	    }, 1000);
+		
+		uni.request({
+		    url: 'http://localhost:9005/aliyun/msm/send/'+this.userInfo.phone,
+		    method: 'GET',
+
+		})
+		.then((response) => {
+			console.log(response);
+		})
+		.catch((error) => {
+		    // 请求失败的处理
+		    console.error(error);
+		});	
+	},
+	
+	//检查是否勾选隐私协议
 	toggleAgreementCheck() {
 	  this.isAgreementChecked = !this.isAgreementChecked;
 	},	
+	
+	//打开隐私协议的方法
     openAgreement(type) {
       if (type === 'user') {
         // 打开用户服务协议页面或视图
@@ -248,6 +343,10 @@ export default {
   padding: 10px;
   border-radius: 5px;
   background-color: #fff;
+}
+.info-button{
+	flex: 1;
+	font-size: 14px;
 }
 .picker-display {
   padding-left: 5px; /* 与输入框文字对齐 */

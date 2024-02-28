@@ -280,12 +280,12 @@ var _default = {
       this.fetchData();
       console.log(this.offset);
     },
-    //获取第一个未标注的数据
+    //获取第一个标注的数据
     fetchData: function fetchData() {
       var _this2 = this;
       // 发送HTTP请求到后端接口
       uni.request({
-        url: 'http://121.41.80.48:9003/erzhen/getDone',
+        url: 'http://localhost:9003/erzhen/getDone',
         method: 'GET',
         header: {
           "Content-Type": "application/json",
@@ -299,7 +299,7 @@ var _default = {
           if (res.statusCode >= 200 && res.statusCode < 300) {
             // 请求成功，处理返回的数据
             //回显数据
-            _this2.patientIdcard = res.data.Idcard;
+            _this2.patientIdcard = res.data.user[0].mobile;
             _this2.imgUrl = res.data.user[0].imgUrl;
             _this2.imageID = res.data.user[0].imageID;
             _this2.selectedOption = res.data.user[0].whole;

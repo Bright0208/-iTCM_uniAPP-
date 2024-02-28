@@ -43,7 +43,7 @@ export default {
 		  const token = uni.getStorageSync('token');
           // 上传图片
           uni.uploadFile({
-            url: 'http://121.41.80.48:9003/user-ear/upload', // 您的后端接口地址
+            url: 'http://localhost:9003/user-ear/upload', // 您的后端接口地址
             filePath: tempFilePaths[0],
             name: 'file', // 这里根据后端的需要进行修改
 			formData: {

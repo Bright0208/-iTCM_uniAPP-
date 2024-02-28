@@ -169,7 +169,15 @@
 			"path" : "pages/user/account_login",
 			"style" : 
 			{
-				"navigationBarTitleText" : "",
+				"navigationBarTitleText" : "账号登录",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/user/account_register",
+			"style" : 
+			{
+				"navigationBarTitleText" : "注册账号",
 				"enablePullDownRefresh" : false
 			}
 		}

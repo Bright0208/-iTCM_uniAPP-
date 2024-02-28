@@ -227,11 +227,10 @@ export default {
 			    data["肺_All"] += item+"/";
 			});
 			
-		
 			
 			//发送请求
 			uni.request({
-		        url: 'http://121.41.80.48:9003/wangzhen/update',
+		        url: 'http://localhost:9003/wangzhen/update',
 		        method: 'POST', // 根据实际情况设置请求方法，如GET、POST等
 				header:{"Content-Type": "application/json",
 						"token": uni.getStorageSync('token')
@@ -283,12 +282,12 @@ export default {
 		 fetchData() {
 		   // 发送HTTP请求到后端接口
 		   uni.request({
-		     url: 'http://121.41.80.48:9003/wangzhen/getFirstNotDone',
+		     url: 'http://localhost:9003/wangzhen/getFirstNotDone',
 		     method: 'GET',
 		     success: (res) => {
 				if(res.statusCode >= 200 && res.statusCode < 300){
 		             // 请求成功，处理返回的数据
-			         this.patientIdcard=res.data.Idcard
+			         this.patientIdcard=res.data.user.mobile
 			         console.log(res.data);
 			         this.imgUrl=res.data.user.imgUrl
 			         this.imageID= res.data.user.imageID
@@ -301,9 +300,6 @@ export default {
 					 });
 				 }	 
 				 
-				 
-				 
-
 		     },
 		     fail: (error) => {
 		       // 请求失败，处理错误信息
@@ -314,10 +310,9 @@ export default {
 		 //刷新页面
 		 refreshPage() {
 		       uni.redirectTo({
-						url: '/pages/list/wangzhen/list' // 替换成当前页面路径
+						url: '/pages/doctor/wangzhen/face' // 替换成当前页面路径
 					});
 				}   
-		 
     }
 }
 

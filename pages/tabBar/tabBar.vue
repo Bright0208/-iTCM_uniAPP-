@@ -24,7 +24,7 @@
             }
         },
         created() {
-            this.currentIndex = this.selectedIndex;
+            // this.currentIndex = this.selectedIndex;
             
             var _this = this
             
@@ -80,7 +80,6 @@
         methods: {
             switchTab(item, index) {
                 this.currentIndex = index;
-                
                 let url = item.pagePath;
                 uni.switchTab({url:url})
             },

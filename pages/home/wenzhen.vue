@@ -235,7 +235,7 @@ export default {
 	},
 	save(){
 		uni.request({
-		  url: 'http://121.41.80.48:9002/wenzhen/save',
+		  url: 'http://localhost:9002/wenzhen/save',
 		  method: 'POST',
 		  data:{
 			  token:uni.getStorageSync('token'),

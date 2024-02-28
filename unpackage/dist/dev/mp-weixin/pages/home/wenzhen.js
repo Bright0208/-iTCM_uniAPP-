@@ -146,7 +146,8 @@ var _default = {
     };
   },
   created: function created() {
-    this.currentIndex = this.selectedIndex;
+    // this.currentIndex = this.selectedIndex;
+
     var _this = this;
     if (uni.getStorageSync('identify') == 'user') {
       //用户
@@ -588,7 +589,7 @@ var _default = {
     save: function save() {
       var _this = this;
       uni.request({
-        url: 'http://121.41.80.48:9002/wenzhen/save',
+        url: 'http://localhost:9002/wenzhen/save',
         method: 'POST',
         data: {
           token: uni.getStorageSync('token'),

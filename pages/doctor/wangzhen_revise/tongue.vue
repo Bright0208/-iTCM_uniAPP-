@@ -197,7 +197,7 @@
 			fetchData() {
 			  // 发送HTTP请求到后端接口
 			  uni.request({
-			    url: 'http://121.41.80.48:9003/shezhen/getDone',
+			    url: 'http://localhost:9003/shezhen/getDone',
 			    method: 'GET',
 				header:{"Content-Type": "application/json",
 						"token": uni.getStorageSync('token')
@@ -208,7 +208,7 @@
 			    success: (res) => {
 					if(res.statusCode >= 200 && res.statusCode < 300){
 			              // 请求成功，处理返回的数据
-				  	      this.patientIdcard=res.data.Idcard
+				  	      this.patientIdcard=res.data.user[0].mobile
 				  	      this.imgUrl=res.data.user[0].imgUrl
 				  	      this.imageID= res.data.user[0].imageID
 						  console.log(res.data.user[0])
@@ -246,6 +246,7 @@
 						  icon: 'none',
 						  duration: 4000
 						 });
+						 this.offset--
 					 }	
 			    },
 			    fail: (error) => {

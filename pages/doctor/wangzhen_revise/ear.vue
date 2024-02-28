@@ -130,11 +130,11 @@ methods: {
 		console.log(this.offset)
 	},
 	
-	//获取第一个未标注的数据
+	//获取第一个标注的数据
 	fetchData() {
 	  // 发送HTTP请求到后端接口
 	  uni.request({
-	    url: 'http://121.41.80.48:9003/erzhen/getDone',
+	    url: 'http://localhost:9003/erzhen/getDone',
 	    method: 'GET',
 		header:{"Content-Type": "application/json",
 				"token": uni.getStorageSync('token')
@@ -146,7 +146,7 @@ methods: {
 		  if(res.statusCode >= 200 && res.statusCode < 300){
 		      // 请求成功，处理返回的数据
 			  //回显数据
-		      this.patientIdcard = res.data.Idcard
+		      this.patientIdcard = res.data.user[0].mobile
 		      this.imgUrl =res.data.user[0].imgUrl
 		      this.imageID = res.data.user[0].imageID
 			  this.selectedOption = res.data.user[0].whole
