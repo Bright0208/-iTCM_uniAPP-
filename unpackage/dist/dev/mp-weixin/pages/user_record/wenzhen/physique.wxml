@@ -1,0 +1,1 @@
+<view class="container data-v-15f81cb6"><view class="row3 data-v-15f81cb6">{{"患者编号:"+patientIdcard}}</view><block wx:for="{{user}}" wx:for-item="item" wx:for-index="index"><view class="image-container data-v-15f81cb6"><text class="data-v-15f81cb6">{{"提交时间："+item.gmtCreate}}</text><view class="data-v-15f81cb6">{{"问诊结果："+item.result}}</view></view></block></view>

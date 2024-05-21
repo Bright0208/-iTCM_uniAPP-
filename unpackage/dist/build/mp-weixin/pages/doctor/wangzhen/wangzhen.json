@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "医生望诊",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "tab-bar": "/pages/tabBar/tabBar"
+  }
+}

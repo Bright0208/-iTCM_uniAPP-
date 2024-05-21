@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "闻诊",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "all-speech": "/uni_modules/all-speech/components/all-speech/all-speech",
+    "tab-bar": "/pages/tabBar/tabBar"
+  }
+}
