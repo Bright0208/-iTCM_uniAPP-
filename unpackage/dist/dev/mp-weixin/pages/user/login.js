@@ -153,7 +153,16 @@ exports.default = void 0;
 //
 //
 //
+//
 var _default = {
+  onLoad: function onLoad() {
+    var token = uni.getStorageSync("token");
+    var identify = uni.getStorageSync("identify");
+    this.tiaozhuan(token, identify);
+  },
+  data: function data() {
+    return {};
+  },
   methods: {
     onWechatLogin: function onWechatLogin() {
       // 显示确认弹窗
@@ -181,18 +190,18 @@ var _default = {
       uni.login({
         provider: 'weixin',
         success: function success(res) {
-          if (res.code) {
+          console.log(res);
+          if (res.authResult.openid) {
             uni.request({
-              url: 'http://121.41.80.48:9001/wxlogin/login',
+              url: 'http://8.138.22.54:9001/wxlogin/app_login',
               method: 'POST',
               data: {
-                code: res.code
+                openid: res.authResult.openid
               },
               success: function success(response) {
                 var notRegister = response.data.notRegister;
                 var token = response.data.token;
                 var identity = response.data.identity;
-                console.log(identity);
                 uni.setStorageSync('token', token); //保存token
                 if (notRegister) {
                   // 如果notRegister等于1，显示提示信息，并在3秒后跳转到注册页面
@@ -237,6 +246,41 @@ var _default = {
           console.log('登录失败：' + err.errMsg);
         }
       });
+    },
+    tiaozhuan: function tiaozhuan(token, user) {
+      if (token && user == "user") {
+        uni.showToast({
+          title: '自动登录',
+          icon: 'success',
+          // 显示成功图标
+          duration: 1000,
+          // 持续时间1秒
+          success: function success() {
+            setTimeout(function () {
+              // 在提示信息显示结束后跳转
+              uni.navigateTo({
+                url: '/pages/user/personalInformation'
+              });
+            }, 2000); // 2秒后执行页面跳转，确保提示信息已经展示完毕
+          }
+        });
+      } else if (token && user == "doctor") {
+        uni.showToast({
+          title: '自动登录',
+          icon: 'success',
+          // 显示成功图标
+          duration: 1000,
+          // 持续时间1秒
+          success: function success() {
+            setTimeout(function () {
+              // 在提示信息显示结束后跳转
+              uni.switchTab({
+                url: '/pages/doctor/wangzhen/wangzhen'
+              });
+            }, 2000); // 2秒后执行页面跳转，确保提示信息已经展示完毕
+          }
+        });
+      }
     }
   }
 };

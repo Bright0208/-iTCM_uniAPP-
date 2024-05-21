@@ -29,7 +29,7 @@
 			}
 		},
 		{
-			"path" : "pages/home/wangzhen",
+			"path" : "pages/home/wangzhen/wangzhen",
 			"style" : 
 			{
 				"navigationBarTitleText" : "望诊",
@@ -38,7 +38,7 @@
 		},
 
 		{
-			"path" : "pages/home/wenzhen",
+			"path" : "pages/home/wenzhen/wenzhen",
 			"style" : 
 			{
 				"navigationBarTitleText" : "问诊",
@@ -150,6 +150,30 @@
 			}
 		},
 		{
+			"path" : "pages/home/wangzhen_revise/ear",
+			"style" : 
+			{
+				"navigationBarTitleText" : "耳诊历史结果",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/home/wangzhen_revise/face",
+			"style" : 
+			{
+				"navigationBarTitleText" : "面诊历史结果",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/home/wangzhen_revise/tongue",
+			"style" : 
+			{
+				"navigationBarTitleText" : "舌诊历史结果",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
 			"path" : "pages/user/agreement/user",
 			"style" : 
 			{
@@ -164,24 +188,150 @@
 				"navigationBarTitleText" : "",
 				"enablePullDownRefresh" : false
 			}
+		},
+		{
+			"path" : "pages/user/account_login",
+			"style" : 
+			{
+				"navigationBarTitleText" : "账号登录",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/user/account_register",
+			"style" : 
+			{
+				"navigationBarTitleText" : "注册账号",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/home/wen2zhen/wen2zhen",
+			"style" : 
+			{
+				"navigationBarTitleText" : "闻诊",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/home/wangzhen/hand",
+			"style" : 
+			{
+				"navigationBarTitleText" : "手诊",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/user/personalInformation",
+			"style" : 
+			{
+				"navigationBarTitleText" : "基本信息",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/user_record/wangzhen/face",
+			"style" : 
+			{
+				"navigationBarTitleText" : "脸部提交记录"
+			}
+		},
+		{
+			"path" : "pages/user_record/wangzhen/ear",
+			"style" : 
+			{
+				"navigationBarTitleText" : "耳朵提交记录"
+			}
+		},
+		{
+			"path" : "pages/user_record/wangzhen/tongue",
+			"style" : 
+			{
+				"navigationBarTitleText" : "舌头提交记录"
+			}
+		},
+		{
+			"path" : "pages/user_record/wangzhen/hand",
+			"style" : 
+			{
+				"navigationBarTitleText" : "手部提交记录"
+			}
+		},
+		{
+			"path" : "pages/user_record/wenzhen/physique",
+			"style" : 
+			{
+				"navigationBarTitleText" : "体质问诊记录"
+			}
+		},
+		{
+			"path" : "pages/user_record/wenzhen/rhinitis",
+			"style" : 
+			{
+				"navigationBarTitleText" : "鼻炎问诊记录"
+			}
+		},
+		{
+			"path" : "pages/user_record/wen2zhen/voice",
+			"style" : 
+			{
+				"navigationBarTitleText" : "录音提交记录"
+			}
+		},
+		{
+			"path" : "pages/home/wenzhen/rhinitis",
+			"style" : 
+			{
+				"navigationBarTitleText" : "鼻炎"
+			}
+		},
+		{
+			"path" : "pages/home/wenzhen/physique",
+			"style" : 
+			{
+				"navigationBarTitleText" : "体质"
+			}
+		},
+		{
+			"path" : "pages/user/resultAndSuggestion",
+			"style" : 
+			{
+				"navigationBarTitleText" : ""
+			}
+		},
+		{
+			"path" : "pages/user_record/westernMedicine/westernMedicine",
+			"style" : 
+			{
+				"navigationBarTitleText" : ""
+			}
 		}
+
 		
 	],
 	
 	"tabBar": {
+				"custom": true,
 			// "backgroundColor": "#F8F8F8",
 			// "color": "#8F8F94",
 			"list": [{
 				// "text": "望诊",
-				"pagePath": "pages/home/wangzhen"
+				"pagePath": "pages/home/wangzhen/wangzhen"
 				// "iconPath": "static/api_select.png", //未选中时的图标
 				// "selectedIconPath": "static/api.png" //选中后图标
 			}, {
 				// "text": "问诊",
-				"pagePath": "pages/home/wenzhen"
+				"pagePath": "pages/home/wenzhen/wenzhen"
 				// "iconPath": "static/A.png", //未选中时的图标
 				// "selectedIconPath": "static/B.png" //选中后图标
 			}, {
+				// "text": "闻诊",
+				"pagePath": "pages/home/wen2zhen/wen2zhen"
+				// "iconPath": "static/A.png", //未选中时的图标
+				// "selectedIconPath": "static/B.png" //选中后图标
+			}, 
+			
+			{
 				// "text": "我的",
 				"pagePath": "pages/user/PersonalInfo"
 				// "iconPath": "static/A.png", //未选中时的图标
@@ -191,12 +341,15 @@
 				"pagePath": "pages/doctor/wangzhen/wangzhen"
 				// "iconPath": "static/A.png", //未选中时的图标
 				// "selectedIconPath": "static/B.png" //选中后图标
-			},{
+			},
+			
+			{
 				// "text": "我的",
 				"pagePath": "pages/doctor/PersonalInfo"
 				// "iconPath": "static/A.png", //未选中时的图标
 				// "selectedIconPath": "static/B.png" //选中后图标
-			}]
+			}
+			]
 		},	
 	
 	
@@ -206,7 +359,17 @@
 		"navigationBarBackgroundColor": "#F8F8F8",
 		"backgroundColor": "#F8F8F8"
 	},
-	"uniIdRouter": {}
+	"uniIdRouter": {},
+	"condition" : { //模式配置，仅开发期间生效
+		"current": 0, //当前激活的模式(list 的索引项)
+		"list": [
+			{
+				"name": "", //模式名称
+				"path": "", //启动页面，必选
+				"query": "" //启动参数，在页面的onLoad函数里面得到
+			}
+		]
+	}
 	
 }
 

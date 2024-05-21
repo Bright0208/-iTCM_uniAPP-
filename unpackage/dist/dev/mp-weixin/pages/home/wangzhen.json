@@ -1,7 +1,0 @@
-{
-  "navigationBarTitleText": "望诊",
-  "enablePullDownRefresh": false,
-  "usingComponents": {
-    "tab-bar": "/pages/tabBar/tabBar"
-  }
-}

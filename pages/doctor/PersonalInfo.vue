@@ -3,10 +3,10 @@
     <!-- 头部区域 -->
     <view class="header-section">
       <!-- 头像 -->
-      <image class="user-avatar" :src="avatarUrl" ></image>
+      <!-- <image class="user-avatar" :src="avatarUrl" ></image> -->
       <!-- 昵称和箭头 -->
       <view class="nickname-and-arrow" @click="navigateToEditProfile">
-        <text class="nickname-text">{{ nickname }}</text>
+        <text class="nickname-text">{{ phone }}</text>
         <text class="arrow-icon">></text>
       </view>
     </view>
@@ -29,6 +29,10 @@
         </view>
       </view>
     </view>
+	
+    <view class="logout_view" >
+       <button @click="logout">退出登录</button>
+    </view>
     
     <tabBar ref="customTabBar" selectedIndex = 1 ></tabBar>
   </view>
@@ -41,13 +45,19 @@ export default {
    },
   onShow() {
     // 更新tabBar的选中索引
-    this.$refs.customTabBar.updateActiveTabIndex();
+      this.$nextTick(() => {
+        if (this.$refs.customTabBar) {
+          // 更新tabBar的选中索引
+          this.$refs.customTabBar.updateActiveTabIndex();
+        }
+      });
   },	
   data() {
     return {
       // 页面的数据
 	  avatarUrl:"",
 	  nickname:'',
+	  phone:'',
     };
   },
   
@@ -87,7 +97,7 @@ export default {
 	//获取个人头像和昵称
 	getAvatarAndNickname(){
 		uni.request({
-		    url: 'http://121.41.80.48:9001/user/getAvatarAndNickname',
+		    url: 'http://8.138.22.54:9001/user/getAvatarAndNickname',
 		    method: 'GET',
 		    data: {
 		        token: uni.getStorageSync('token')
@@ -96,14 +106,25 @@ export default {
 		.then((response) => {
 			console.log(response.data.user);
 		    // 请求成功的处理
-			this.avatarUrl = response.data.user.avatarUrl;
-			this.nickname = response.data.user.nickName;
+			// this.avatarUrl = response.data.user.avatarUrl;
+			// this.nickname = response.data.user.nickName;
+			this.phone= response.data.user.mobile
+			
 		})
 		.catch((error) => {
 		    // 请求失败的处理
 		    console.error(error);
 		});
 	},
+	//退出登录
+	logout() {
+	      uni.removeStorageSync('token'); // 删除所有存储在 Storage 中的内容
+		  uni.removeStorageSync('identify'); // 删除所有存储在 Storage 中的内容
+	      uni.reLaunch({
+	        url: '/pages/user/login' // 返回到登录界面
+	      });
+	    }, 
+	
   }
 };
 </script>

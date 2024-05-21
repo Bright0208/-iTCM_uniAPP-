@@ -65,7 +65,7 @@ export default {
 	//获取用户信息
 	getUserInfo(){
 		uni.request({
-		    url: 'http://121.41.80.48:9001/user/getAvatarAndNickname',
+		    url: 'http://8.138.22.54:9001/user/getAvatarAndNickname',
 		    method: 'GET',
 		    data: {
 		        token: uni.getStorageSync('token')
@@ -122,7 +122,7 @@ export default {
           duration: 2000
         });
 		uni.request({
-		  url: 'http://121.41.80.48:9001/user/register',
+		  url: 'http://8.138.22.54:9001/user/register',
 		  method: 'POST',
 		  data: {
 			token: uni.getStorageSync('token'),

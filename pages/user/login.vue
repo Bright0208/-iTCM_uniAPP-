@@ -4,14 +4,25 @@
       <image class="logo" src="https://img2.baidu.com/it/u=2663264561,635415515&fm=253&fmt=auto&app=138&f=JPEG?w=657&h=500" mode="aspectFit"></image>
     </view>
 	<view class="button-container">
-      <button class="button-common login-btn" @click="onWechatLogin">微信登录</button>
-      <!-- <navigator url="/pages/user/register" class="button-common register-btn">注册账号</navigator> -->
+      <!-- <button class="button-common wxlogin-btn" @click="onWechatLogin">微信登录</button> -->
+	  <navigator url="/pages/user/account_login" class="button-common login-btn">账号登录</navigator>
+      <navigator url="/pages/user/account_register" class="button-common register-btn">注册账号</navigator>
 	</view>
   </view>
 </template>
 
 <script>
 export default {
+	onLoad(){
+		const token = uni.getStorageSync("token");
+		const identify = uni.getStorageSync("identify");
+		this.tiaozhuan(token,identify)
+	},
+	data() {
+	    return {
+
+	    }
+	  },
   methods: {
     onWechatLogin() {
       // 显示确认弹窗
@@ -38,18 +49,19 @@ export default {
     uni.login({
       provider: 'weixin',
       success: (res) => {
-        if (res.code) {
+		  console.log(res)
+        if (res.authResult.openid) {
           uni.request({
-            url: 'http://121.41.80.48:9001/wxlogin/login',
+            url: 'http://8.138.22.54:9001/wxlogin/app_login',
             method: 'POST',
             data: {
-              code: res.code
+              openid: res.authResult.openid
             },
             success: (response) => {
 			  const notRegister = response.data.notRegister;
 			  const token = response.data.token;
 			  const identity = response.data.identity;
-			  console.log(identity);
+			  
 			  uni.setStorageSync('token', token); //保存token
 			  if (notRegister) {
 			          // 如果notRegister等于1，显示提示信息，并在3秒后跳转到注册页面
@@ -95,6 +107,44 @@ export default {
       }
     });
   },	 
+	
+	tiaozhuan(token,user){
+		if(token&& user=="user"){
+			uni.showToast({
+			    title: '自动登录',
+			    icon: 'success', // 显示成功图标
+			    duration: 1000, // 持续时间1秒
+			    success: () => {
+			        setTimeout(() => {
+			            // 在提示信息显示结束后跳转
+			           uni.navigateTo({
+			               url: '/pages/user/personalInformation'
+			           });
+			        }, 2000); // 2秒后执行页面跳转，确保提示信息已经展示完毕
+			    }
+			});
+		}
+		else if(token&& user=="doctor"){
+			uni.showToast({
+			    title: '自动登录',
+			    icon: 'success', // 显示成功图标
+			    duration: 1000, // 持续时间1秒
+			    success: () => {
+			        setTimeout(() => {
+			            // 在提示信息显示结束后跳转
+			           uni.switchTab({
+			               url: '/pages/doctor/wangzhen/wangzhen'
+			           });
+			        }, 2000); // 2秒后执行页面跳转，确保提示信息已经展示完毕
+			    }
+			});
+		}
+	},
+	
+	
+
+	
+	
 	
   }
 };
@@ -152,10 +202,18 @@ export default {
 }
 
 /* 应用于<button>的特定样式 */
-.login-btn {
+.wxlogin-btn {
   background: #07C160; /* 微信绿 */
   border: none;
   outline: none;
+}
+
+/* 应用于<navigator>的特定样式 */
+.login-btn {
+  background: #ff5500; /* iOS 蓝 */
+  border: 1px solid #ff5500; /* 有边框 */
+  box-sizing: border-box; /* 确保边框宽度计算在内 */
+  text-decoration: none; /* 移除超链接的下划线 */
 }
 
 /* 应用于<navigator>的特定样式 */
