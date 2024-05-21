@@ -45,7 +45,12 @@ export default {
    },
   onShow() {
     // 更新tabBar的选中索引
-    this.$refs.customTabBar.updateActiveTabIndex();
+      this.$nextTick(() => {
+        if (this.$refs.customTabBar) {
+          // 更新tabBar的选中索引
+          this.$refs.customTabBar.updateActiveTabIndex();
+        }
+      });
   },	
   data() {
     return {
@@ -92,7 +97,7 @@ export default {
 	//获取个人头像和昵称
 	getAvatarAndNickname(){
 		uni.request({
-		    url: 'http://localhost:9001/user/getAvatarAndNickname',
+		    url: 'http://8.138.22.54:9001/user/getAvatarAndNickname',
 		    method: 'GET',
 		    data: {
 		        token: uni.getStorageSync('token')

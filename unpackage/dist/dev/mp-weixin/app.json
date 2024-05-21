@@ -3,8 +3,8 @@
     "pages/user/login",
     "pages/user/PersonalInfo",
     "pages/user/register",
-    "pages/home/wangzhen",
-    "pages/home/wenzhen",
+    "pages/home/wangzhen/wangzhen",
+    "pages/home/wenzhen/wenzhen",
     "pages/home/wangzhen/face",
     "pages/home/wangzhen/tongue",
     "pages/home/wangzhen/ear",
@@ -18,10 +18,27 @@
     "pages/doctor/wangzhen_revise/ear",
     "pages/doctor/wangzhen_revise/face",
     "pages/doctor/wangzhen_revise/tongue",
+    "pages/home/wangzhen_revise/ear",
+    "pages/home/wangzhen_revise/face",
+    "pages/home/wangzhen_revise/tongue",
     "pages/user/agreement/user",
     "pages/user/agreement/privacy",
     "pages/user/account_login",
-    "pages/user/account_register"
+    "pages/user/account_register",
+    "pages/home/wen2zhen/wen2zhen",
+    "pages/home/wangzhen/hand",
+    "pages/user/personalInformation",
+    "pages/user_record/wangzhen/face",
+    "pages/user_record/wangzhen/ear",
+    "pages/user_record/wangzhen/tongue",
+    "pages/user_record/wangzhen/hand",
+    "pages/user_record/wenzhen/physique",
+    "pages/user_record/wenzhen/rhinitis",
+    "pages/user_record/wen2zhen/voice",
+    "pages/home/wenzhen/rhinitis",
+    "pages/home/wenzhen/physique",
+    "pages/user/resultAndSuggestion",
+    "pages/user_record/westernMedicine/westernMedicine"
   ],
   "subPackages": [],
   "window": {
@@ -31,12 +48,16 @@
     "backgroundColor": "#F8F8F8"
   },
   "tabBar": {
+    "custom": true,
     "list": [
       {
-        "pagePath": "pages/home/wangzhen"
+        "pagePath": "pages/home/wangzhen/wangzhen"
       },
       {
-        "pagePath": "pages/home/wenzhen"
+        "pagePath": "pages/home/wenzhen/wenzhen"
+      },
+      {
+        "pagePath": "pages/home/wen2zhen/wen2zhen"
       },
       {
         "pagePath": "pages/user/PersonalInfo"

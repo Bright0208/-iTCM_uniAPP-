@@ -1,7 +1,7 @@
 <template>
   <view class="container">
     <view class="upload-container">
-      <button class="upload-btn" @click="chooseAndUploadPhoto">上传照片</button>
+      <button class="upload-btn" @click="chooseAndUploadPhoto">{{ uploadButtonText }}</button>
     </view>
 
 	<view v-if="uploadurl" class="text-section">
@@ -10,14 +10,32 @@
     <view v-if="uploadurl" class="image-container">
       <image class="sample-image" :src="uploadurl" mode="aspectFit" @click="viewImage(uploadurl)"></image>
     </view>
-	
+	<view class="text-section">
+	  <button v-if="uploadurl" class="upload-btn" @click="faceSubmit">提交</button>
+	</view>
 	<view class="text-section">
 	  <text class="image-text">示例照片</text>
 	</view>
     <view class="image-container">
       <image class="sample-image" :src="imageSrc" mode="aspectFit" @click="viewImage(imageSrc)"></image>
     </view>
-	
+  <!-- 加载中遮罩层 -->
+  <view v-if="isLoading" class="overlay">
+    <view class="loading">
+      <text>诊断中...</text>
+	      <div class="spinner">
+	        <div class="bounce1"></div>
+	        <div class="bounce2"></div>
+	        <div class="bounce3"></div>
+	      </div>
+    </view>
+  </view>
+  		<view>
+  			<!-- 提示信息弹窗 -->
+  			<uni-popup ref="message" type="message">
+  				<uni-popup-message :type="msgType" :message="messageText" :duration="4000"></uni-popup-message>
+  			</uni-popup>
+  		</view>
   </view>
 </template>
 
@@ -27,10 +45,18 @@ export default {
 	    return {
 	      // 如果是网络图片，请确保图片链接是可访问的
 	      imageSrc: 'https://itcm-wyu.oss-cn-guangzhou.aliyuncs.com/example/face/face_example.JPG',
-		  uploadurl:""
+		  uploadurl:"",
+		  isLoading: false,
+		  type: 'center',
+		  msgType: 'success',
+		  messageText: '这是一条成功提示'
 	    }
 	  },
-	  
+  computed: {
+    uploadButtonText() {
+      return this.uploadurl ? '重新上传' : '上传照片';
+    }
+  },	  
   methods: {
     chooseAndUploadPhoto() {
       // 选择图片
@@ -40,50 +66,92 @@ export default {
         sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
         success: (res) => {
           const tempFilePaths = res.tempFilePaths;
-		  const token = uni.getStorageSync('token');
-          // 上传图片
-          uni.uploadFile({
-            url: 'http://localhost:9003/user-face/upload', // 您的后端接口地址
-            filePath: tempFilePaths[0],
-            name: 'file', // 这里根据后端的需要进行修改
-			formData: {
-			       'token': token // 将token包含在formData中
-			},
-            success: (uploadFileRes) => {
-				if(uploadFileRes.statusCode >= 200 && uploadFileRes.statusCode < 300){
-					uni.showToast({
-					  title: '上传成功',
-					  duration: 2000
-					});
-					this.uploadurl = JSON.parse(uploadFileRes.data).url; 
-				}else{
-					uni.showToast({
-					  title: '上传失败',
-					  icon: 'none',
-					  duration: 2000
-					});
-				}
-				
-            },
-            fail: (uploadFileErr) => {
-              console.log(uploadFileErr); // 输出错误信息
-              uni.showToast({
-                title: '上传失败',
-                icon: 'none',
-                duration: 2000
-              });
-            }
-          });
-        }
+		  this.uploadurl = tempFilePaths[0]
+		}
       });
     },
+	
+	
+	faceSubmit(){
+		this.isLoading = true;
+		// 上传图片
+		const token = uni.getStorageSync('token');
+		const userInformation = uni.getStorageSync('userInformation');
+		uni.uploadFile({
+		  url: 'http://8.138.22.54:9001/user-face/upload', // 您的后端接口地址8.138.22.54,,192.168.1.163
+		  filePath: this.uploadurl,
+		  name: 'file', // 这里根据后端的需要进行修改
+		  formData: {
+		         'token': token ,// 将token包含在formData中
+		  	     'userInformation':userInformation
+		  },
+		  success: (uploadFileRes) => {
+						if(uploadFileRes.statusCode >= 200 && uploadFileRes.statusCode < 300){
+							// 去AI诊断
+							this.toAi()
+						}else{
+							uni.showToast({
+							  title: '上传失败',
+							  icon: 'none',
+							  duration: 2000
+							});
+						}
+		  },
+		  fail: (uploadFileErr) => {
+		    console.log(uploadFileErr); // 输出错误信息
+		    uni.showToast({
+		      title: '上传失败',
+		      icon: 'none',
+		      duration: 2000
+		    });
+		  }
+		});
+		
+
+	},
+	toAi(){
+		
+		// 发送请求到 FastAPI
+			uni.uploadFile({
+			url: 'http://8.138.22.54:9000/AI2/upload', // FastAPI 服务器端点 192.168.1.161。127.0.0.1、192.168.1.163
+			filePath: this.uploadurl,
+			name: 'file', // FastAPI 后端接收文件的字段名
+			success: (uploadRes) => {
+				// 上传成功的处理
+				console.log('Upload success', uploadRes.data);
+				
+				console.log('Upload success', JSON.parse(uploadRes.data).filtered_results );
+				uni.setStorageSync("face",JSON.parse(uploadRes.data).filtered_results)
+				this.isLoading = false;
+				this.dialogToggle('success',"已经完成面诊，请进行舌诊")
+			},
+			fail: (uploadErr) => {
+				// 上传失败的处理
+				console.error('Upload fail', uploadErr)
+				uni.showToast({
+				  title: '诊断失败',
+				  icon: 'none',
+				  duration: 1500
+				});;
+				this.isLoading = false;
+			},
+			complete: () => {
+			  this.isLoading = false;
+			}
+			});
+	},
     viewImage(src) {
       // 实现点击查看大图的逻辑
 		  uni.previewImage({
 		    urls: [src], // 预览的图片数组
 		    current: src // 当前显示的图片
 		  })
-    }
+    },
+	dialogToggle(type,text) {
+		this.msgType = type
+		this.messageText = text
+		this.$refs.message.open()
+	},
   }
 }
 </script>
@@ -138,4 +206,61 @@ export default {
   border-radius: 10px;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
 }
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* 半透明 */
+  z-index: 999; /* 确保遮罩层在最上层 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.loading {
+  /* 加载动画样式 */
+	color: white;
+	font-size: 90rpx;
+}
+.spinner {
+  margin: 100px auto;
+  width: 50px;
+  text-align: center;
+}
+
+.spinner > div {
+  width: 12px;
+  height: 12px;
+  background-color: #333;
+  border-radius: 100%;
+  display: inline-block;
+  -webkit-animation: bouncedelay 1.4s infinite ease-in-out both;
+  animation: bouncedelay 1.4s infinite ease-in-out both;
+}
+
+.spinner .bounce1 {
+  -webkit-animation-delay: -0.32s;
+  animation-delay: -0.32s;
+}
+
+.spinner .bounce2 {
+  -webkit-animation-delay: -0.16s;
+  animation-delay: -0.16s;
+}
+
+@-webkit-keyframes bouncedelay {
+  0%, 80%, 100% { -webkit-transform: scale(0) }
+  40% { -webkit-transform: scale(1.0) }
+}
+
+@keyframes bouncedelay {
+  0%, 80%, 100% {
+    transform: scale(0);
+    -webkit-transform: scale(0);
+  } 40% {
+    transform: scale(1.0);
+    -webkit-transform: scale(1.0);
+  }
+} 
 </style>

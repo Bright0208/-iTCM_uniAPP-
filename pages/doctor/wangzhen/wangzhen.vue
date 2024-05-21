@@ -18,7 +18,12 @@ export default {
   },		
   onShow() {
     // 更新tabBar的选中索引
-    this.$refs.customTabBar.updateActiveTabIndex();
+      this.$nextTick(() => {
+        if (this.$refs.customTabBar) {
+          // 更新tabBar的选中索引
+          this.$refs.customTabBar.updateActiveTabIndex();
+        }
+      });
   },	
 	
   methods: {

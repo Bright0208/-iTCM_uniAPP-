@@ -190,14 +190,63 @@ var _tabBar = _interopRequireDefault(__webpack_require__(/*! @/pages/tabBar/tabB
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var _default = {
   components: {
     tabBar: _tabBar.default //引用对应的组件
   },
   onShow: function onShow() {
+    var _this = this;
     // 更新tabBar的选中索引
-    this.$refs.customTabBar.updateActiveTabIndex();
-    this.getPersonalResult();
+    this.$nextTick(function () {
+      if (_this.$refs.customTabBar) {
+        // 更新tabBar的选中索引
+        _this.$refs.customTabBar.updateActiveTabIndex();
+      }
+    });
+    // this.getPersonalResult();
+    this.isFinsh();
   },
   data: function data() {
     return {
@@ -205,10 +254,7 @@ var _default = {
       avatarUrl: "",
       nickname: '',
       mobile: '',
-      wenzhenResult: "",
-      earDiagnosticResultsRemarks: "",
-      faceDiagnosticResultsRemarks: "",
-      tongueFaceDiagnosticResultsRemarks: ""
+      isfinsh: false
     };
   },
   onLoad: function onLoad() {
@@ -222,11 +268,59 @@ var _default = {
         url: '/pages/user/updatePersonalInfo' // 修改为真实的页面路径
       });
     },
+    // 导航到面诊页面的方法
+    navigateToFaceDiagnosis: function navigateToFaceDiagnosis() {
+      uni.navigateTo({
+        url: '/pages/user_record/wangzhen/face' // 修改为真实的面诊页面路径
+      });
+    },
+    // 导航到舌诊页面的方法
+    navigateToTongueDiagnosis: function navigateToTongueDiagnosis() {
+      uni.navigateTo({
+        url: '/pages/user_record/wangzhen/tongue' // 修改为真实的舌诊页面路径
+      });
+    },
+    // 导航到耳诊页面的方法
+    navigateToEarDiagnosis: function navigateToEarDiagnosis() {
+      uni.navigateTo({
+        url: '/pages/user_record/wangzhen/ear' // 修改为真实的耳诊页面路径
+      });
+    },
+    // 导航到手诊页面的方法
+    navigateToHandDiagnosis: function navigateToHandDiagnosis() {
+      uni.navigateTo({
+        url: '/pages/user_record/wangzhen/hand' // 修改为真实的手诊页面路径
+      });
+    },
+    // 导航到问诊体质页面的方法
+    navigateToPhysiqueDiagnosis: function navigateToPhysiqueDiagnosis() {
+      uni.navigateTo({
+        url: '/pages/user_record/wenzhen/physique' // 修改为真实的手诊页面路径
+      });
+    },
+    // 导航到问诊鼻炎页面的方法
+    navigateToRhinitisDiagnosis: function navigateToRhinitisDiagnosis() {
+      uni.navigateTo({
+        url: '/pages/user_record/wenzhen/rhinitis' // 修改为真实的手诊页面路径
+      });
+    },
+    // 导航到录音页面的方法
+    navigateToVoiceDiagnosis: function navigateToVoiceDiagnosis() {
+      uni.navigateTo({
+        url: '/pages/user_record/wen2zhen/voice' // 修改为真实的手诊页面路径
+      });
+    },
+    // 导航到西医报告的方法
+    navigateToWesternMedicine: function navigateToWesternMedicine() {
+      uni.navigateTo({
+        url: '/pages/user_record/westernMedicine/westernMedicine' // 修改为真实的西医报告页面路径
+      });
+    },
     //获取个人头像和昵称
     getAvatarAndNickname: function getAvatarAndNickname() {
-      var _this = this;
+      var _this2 = this;
       uni.request({
-        url: 'http://localhost:9001/user/getAvatarAndNickname',
+        url: 'http://8.138.22.54:9001/user/getAvatarAndNickname',
         method: 'GET',
         data: {
           token: uni.getStorageSync('token')
@@ -234,9 +328,9 @@ var _default = {
       }).then(function (response) {
         console.log(response.data.user);
         // 请求成功的处理
-        _this.avatarUrl = response.data.user.avatarUrl;
-        _this.nickname = response.data.user.nickname;
-        _this.mobile = response.data.user.mobile;
+        _this2.avatarUrl = response.data.user.avatarUrl;
+        _this2.nickname = response.data.user.nickname;
+        _this2.mobile = response.data.user.mobile;
       }).catch(function (error) {
         // 请求失败的处理
         console.error(error);
@@ -244,9 +338,9 @@ var _default = {
     },
     //获取诊断结果
     getPersonalResult: function getPersonalResult() {
-      var _this2 = this;
+      var _this3 = this;
       uni.request({
-        url: 'http://localhost:9004/personalResults/get',
+        url: 'http://8.138.22.54:9004/personalResults/get',
         method: 'GET',
         data: {
           token: uni.getStorageSync('token')
@@ -254,10 +348,10 @@ var _default = {
       }).then(function (response) {
         // 请求成功的处理
         console.log(response.data[0]);
-        _this2.wenzhenResult = response.data[0].wenzhenResult;
-        _this2.earDiagnosticResultsRemarks = response.data[0].earDiagnosticResultsRemarks;
-        _this2.faceDiagnosticResultsRemarks = response.data[0].faceDiagnosticResultsRemarks;
-        _this2.tongueFaceDiagnosticResultsRemarks = response.data[0].tongueFaceDiagnosticResultsRemarks;
+        _this3.wenzhenResult = response.data[0].wenzhenResult;
+        _this3.earDiagnosticResultsRemarks = response.data[0].earDiagnosticResultsRemarks;
+        _this3.faceDiagnosticResultsRemarks = response.data[0].faceDiagnosticResultsRemarks;
+        _this3.tongueFaceDiagnosticResultsRemarks = response.data[0].tongueFaceDiagnosticResultsRemarks;
       }).catch(function (error) {
         // 请求失败的处理
         console.error(error);
@@ -270,6 +364,65 @@ var _default = {
       uni.reLaunch({
         url: '/pages/user/login' // 返回到登录界面
       });
+    },
+    chooseAndUploadPhoto: function chooseAndUploadPhoto() {
+      var _this4 = this;
+      // 选择图片
+      uni.chooseImage({
+        count: 1,
+        // 默认9，这里设置成一张
+        sizeType: ['original', 'compressed'],
+        // 可以指定是原图还是压缩图，默认二者都有
+        sourceType: ['album', 'camera'],
+        // 可以指定来源是相册还是相机，默认二者都有
+        success: function success(res) {
+          var tempFilePaths = res.tempFilePaths;
+          _this4.uploadurl = tempFilePaths[0];
+          var token = uni.getStorageSync('token');
+          var userInformation = uni.getStorageSync('userInformation');
+          uni.uploadFile({
+            url: 'http://192.168.1.163:9003/user-western-medicine/upload',
+            // 您的后端接口地址8.138.22.54,,192.168.1.163
+            filePath: _this4.uploadurl,
+            name: 'file',
+            // 这里根据后端的需要进行修改
+            formData: {
+              'token': token,
+              // 将token包含在formData中
+              'userInformation': userInformation
+            },
+            success: function success(uploadFileRes) {
+              if (uploadFileRes.statusCode >= 200 && uploadFileRes.statusCode < 300) {
+                uni.showToast({
+                  title: '上传成功',
+                  icon: 'none',
+                  duration: 2000
+                });
+              } else {
+                uni.showToast({
+                  title: '上传失败',
+                  icon: 'none',
+                  duration: 2000
+                });
+              }
+            },
+            fail: function fail(uploadFileErr) {
+              console.log(uploadFileErr); // 输出错误信息
+              uni.showToast({
+                title: '上传失败',
+                icon: 'none',
+                duration: 2000
+              });
+            }
+          });
+        }
+      });
+    },
+    isFinsh: function isFinsh() {
+      var hasWenzhen = !!uni.getStorageSync('wenzhen');
+      var hasTongue = !!uni.getStorageSync('tongue');
+      var hasFace = !!uni.getStorageSync('face');
+      this.isfinsh = hasWenzhen && hasTongue && hasFace;
     }
   }
 };
@@ -417,6 +570,7 @@ var _default = {
   },
   data: function data() {
     return {
+      custom: true,
       color: "#666666",
       selectedColor: "#00BAB2",
       list: [],
@@ -430,15 +584,20 @@ var _default = {
     if (uni.getStorageSync('identify') == 'user') {
       //用户
       _this.list = [{
-        "pagePath": "/pages/home/wangzhen",
+        "pagePath": "/pages/home/wangzhen/wangzhen",
         "iconPath": "/static/tab/wangzhen_black.png",
         "selectedIconPath": "/static/tab/wangzhen_blue.png",
         "text": "望诊"
       }, {
-        "pagePath": "/pages/home/wenzhen",
+        "pagePath": "/pages/home/wenzhen/wenzhen",
         "iconPath": "/static/tab/wenzhen_black.png",
         "selectedIconPath": "/static/tab/wenzhen_blue.png",
         "text": "问诊"
+      }, {
+        "pagePath": "/pages/home/wen2zhen/wen2zhen",
+        "iconPath": "/static/tab/wen2zhen_black.png",
+        "selectedIconPath": "/static/tab/wen2zhen_blue.png",
+        "text": "闻诊"
       }, {
         "pagePath": "/pages/user/PersonalInfo",
         "iconPath": "/static/tab/wode_black.png",

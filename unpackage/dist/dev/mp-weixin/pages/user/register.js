@@ -330,7 +330,7 @@ var _default = {
             duration: 3000
           });
           uni.request({
-            url: 'http://localhost:9001/user/register',
+            url: 'http://8.138.22.54:9001/user/register',
             method: 'POST',
             data: {
               token: this.token,
@@ -411,7 +411,7 @@ var _default = {
         }
       }, 1000);
       uni.request({
-        url: 'http://localhost:9005/aliyun/msm/send/' + this.userInfo.phone,
+        url: 'http://8.138.22.54:9005/aliyun/msm/send/' + this.userInfo.phone,
         method: 'GET'
       }).then(function (response) {
         console.log(response);

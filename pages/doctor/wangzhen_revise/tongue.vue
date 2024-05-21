@@ -197,7 +197,7 @@
 			fetchData() {
 			  // 发送HTTP请求到后端接口
 			  uni.request({
-			    url: 'http://localhost:9003/shezhen/getDone',
+			    url: 'http://8.138.22.54:9001/shezhen/getDone',
 			    method: 'GET',
 				header:{"Content-Type": "application/json",
 						"token": uni.getStorageSync('token')
@@ -348,7 +348,7 @@
 			
 			// 	//发送请求
 			// 	uni.request({
-			//         url: 'http://121.41.80.48:9003/shezhen/update',
+			//         url: 'http://8.138.22.54:9003/shezhen/update',
 			//         method: 'POST', // 根据实际情况设置请求方法，如GET、POST等
 			// 		header:{"Content-Type": "application/json",
 			// 				"token": uni.getStorageSync('token')

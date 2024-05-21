@@ -230,7 +230,7 @@ export default {
 			
 			//发送请求
 			uni.request({
-		        url: 'http://localhost:9003/wangzhen/update',
+		        url: 'http://8.138.22.54:9001/wangzhen/update',
 		        method: 'POST', // 根据实际情况设置请求方法，如GET、POST等
 				header:{"Content-Type": "application/json",
 						"token": uni.getStorageSync('token')
@@ -282,7 +282,7 @@ export default {
 		 fetchData() {
 		   // 发送HTTP请求到后端接口
 		   uni.request({
-		     url: 'http://localhost:9003/wangzhen/getFirstNotDone',
+		     url: 'http://8.138.22.54:9001/wangzhen/getFirstNotDone',
 		     method: 'GET',
 		     success: (res) => {
 				if(res.statusCode >= 200 && res.statusCode < 300){

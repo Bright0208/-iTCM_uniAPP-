@@ -198,6 +198,153 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* 页面容器 */
 .page-container {
   padding: 20rpx;
@@ -234,34 +381,63 @@
 }
 /* 望诊结果区域样式 */
 .diagnosis-section {
-  background-color: #ffffff;
-  padding: 20rpx;
-  margin-bottom: 30rpx;
+  margin: 8px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
 }
 .diagnosis-title {
-  font-size: 38rpx;
-  color: #333;
-  margin-bottom: 10rpx;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+.diagnosis-category {
+  margin-bottom: 20px;
+}
+.category-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.diagnosis-result {
+  display: flex;
+  flex-direction: column;
 }
 .result-item {
   display: flex;
   align-items: center;
-  margin-bottom: 10rpx;
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: #f2f2f2;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.result-item:last-child {
+  margin-bottom: 0;
 }
 .item-title {
-  font-size: 34rpx;
-  color: #666;
-  min-width: 100rpx;
+  flex-grow: 1;
+  margin-right: 10px;
+  font-size: 16px;
 }
-.item-desc {
-  font-size: 34rpx;
-  color: #666;
-  flex: 1;
+.arrow-icon {
+  font-size: 18px;
+  color: #007aff;
+}
+/* 响应式调整：如果屏幕宽度小于600px，减少左右边距 */
+@media (max-width: 600px) {
+.diagnosis-section {
+    margin: 10px;
+    padding: 10px;
+}
 }
 /* 问诊结果区域样式 */
 .inquiry-section {
+  margin: 8px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;	
   background-color: #ffffff;
-  padding: 20rpx;
 }
 .inquiry-title {
   font-size: 38rpx;

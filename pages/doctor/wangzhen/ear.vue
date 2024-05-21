@@ -149,7 +149,7 @@
 				console.log(data);  
 				//发送请求
 				uni.request({
-			        url: 'http://localhost:9003/erzhen/update',
+			        url: 'http://192.168.1.170:9001/erzhen/update',
 			        method: 'POST', // 根据实际情况设置请求方法，如GET、POST等
 					header:{"Content-Type": "application/json",
 							"token": uni.getStorageSync('token')
@@ -189,7 +189,7 @@
 			fetchData() {
 			  // 发送HTTP请求到后端接口
 			  uni.request({
-			    url: 'http://localhost:9003/erzhen/getFirstNotDone',
+			    url: 'http://8.138.22.54:9001/erzhen/getFirstNotDone',
 			    method: 'GET',
 			    success: (res) => {
 				  if(res.statusCode >= 200 && res.statusCode < 300){

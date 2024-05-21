@@ -191,7 +191,7 @@ export default {
           duration: 3000
         });
 		uni.request({
-		  url: 'http://localhost:9001/user/register',
+		  url: 'http://8.138.22.54:9001/user/register',
 		  method: 'POST',
 		  data: {
 			token: this.token, //里面有 openid
@@ -219,7 +219,7 @@ export default {
 				 if (identity==2) {
 				 		uni.setStorageSync('identify','user')
 				 		uni.switchTab({
-				 		    url: '/pages/home/wangzhen'
+				 		    url: '/8.138.22.54'
 				 		});
 				     // 用户已注册，执行其他逻辑
 				 }else{
@@ -271,7 +271,7 @@ export default {
 	    }, 1000);
 		
 		uni.request({
-		    url: 'http://localhost:9005/aliyun/msm/send/'+this.userInfo.phone,
+		    url: 'http://8.138.22.54:9005/aliyun/msm/send/'+this.userInfo.phone,
 		    method: 'GET',
 
 		})

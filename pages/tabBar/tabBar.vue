@@ -17,6 +17,7 @@
         },
         data() {
             return {
+				custom: true,
                 color: "#666666",
                 selectedColor: "#00BAB2",
                 list: [],
@@ -31,18 +32,23 @@
             if (uni.getStorageSync('identify') == 'user') {
                 //用户
                 _this.list = [{
-                        "pagePath": "/pages/home/wangzhen",
+                        "pagePath": "/pages/home/wangzhen/wangzhen",
                         "iconPath": "/static/tab/wangzhen_black.png",
                         "selectedIconPath": "/static/tab/wangzhen_blue.png",
                         "text": "望诊"
                     },
                     {
-                        "pagePath": "/pages/home/wenzhen",
+                        "pagePath": "/pages/home/wenzhen/wenzhen",
                         "iconPath": "/static/tab/wenzhen_black.png",
                         "selectedIconPath": "/static/tab/wenzhen_blue.png",
                         "text": "问诊"
                     },
-					
+					{
+					    "pagePath": "/pages/home/wen2zhen/wen2zhen",
+					    "iconPath": "/static/tab/wen2zhen_black.png",
+					    "selectedIconPath": "/static/tab/wen2zhen_blue.png",
+					    "text": "闻诊"
+					},
 					{
 					    "pagePath": "/pages/user/PersonalInfo",
 					    "iconPath": "/static/tab/wode_black.png",

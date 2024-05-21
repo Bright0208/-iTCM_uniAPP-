@@ -4,6 +4,9 @@
     "version" : "0.0",
     "configurations" : [
         {
+            "app-plus" : {
+                "launchtype" : "local"
+            },
             "default" : {
                 "launchtype" : "local"
             },
@@ -15,6 +18,14 @@
         {
             "openVueDevtools" : false,
             "type" : "uni-app:miniProgram"
+        },
+        {
+            "playground" : "standard",
+            "type" : "uni-app:app-android"
+        },
+        {
+            "openVueDevtools" : true,
+            "type" : "uni-app:h5"
         }
     ]
 }
