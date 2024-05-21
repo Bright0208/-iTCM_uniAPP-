@@ -1,0 +1,221 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 样式按需定义 */
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  margin-top: 50rpx;
+}
+.input-group {
+  display: flex;
+  flex-direction: row;
+  /* align-items: center; */
+  margin-bottom: 10px;
+  flex: 1;
+  margin-top: 10px;
+}
+.input{
+	display: block;
+}
+text {
+  margin-right: 10px;
+  /* width: 30px; */
+  align-items: center;
+}
+.input-row input {
+  flex: 1;
+  border: 0; /* 去除输入框边框 */
+  outline: none; /* 去除点击输入框时的外边框 */
+  margin-right: 10px;
+}
+.error-msg {
+  color: red;
+  font-size: 12px;
+  padding-left: 10px;
+}
+.info-button{
+	font-size: 16px;
+	background-color: #4fbcff;
+	border: 1px solid #ddd;
+	border-radius: 1px;
+	padding: 0px;
+	margin: 0px;
+}
+button {
+  flex: 1;
+  padding: 10px;
+  margin: 5px 0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #007aff;
+  color: white;
+}
+

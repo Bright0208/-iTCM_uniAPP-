@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "医生个人信息",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "tab-bar": "/pages/tabBar/tabBar"
+  }
+}
